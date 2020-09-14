@@ -8,19 +8,24 @@
 
 import Foundation
 
-struct Character {
+struct Character: Codable {
     
-    enum Status {
-        case alive
-        case dead
-        case unknown
+    enum Status: String, Codable {
+        case alive = "Alive"
+        case dead = "Dead"
+        case unknown = "unknown"
     }
     
-    enum Gender {
-        case male
-        case female
-        case genderless
-        case unknown
+    enum Gender: String, Codable {
+        case male = "Male"
+        case female = "Female"
+        case genderless = "Genderless"
+        case unknown = "unknown"
+    }
+    
+    struct LocationShortVersion: Codable {
+        let name: String
+        let url: URL
     }
     
     let id: Int
@@ -29,10 +34,16 @@ struct Character {
     let url: URL
     let species: String
     let type: String
-    let origin: Location
+    let origin: LocationShortVersion
     let gender: Gender
     let status: Status
-    let location: Location
+    let location: LocationShortVersion
     let image: URL
     let episodes: [URL]
+    
+    private enum CodingKeys: String, CodingKey {
+        case id, name, created, url, species, type, origin, gender,
+            status, location, image
+        case episodes = "episode"
+    }
 }
