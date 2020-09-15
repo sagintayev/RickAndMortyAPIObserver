@@ -14,3 +14,8 @@ struct ApiServiceInfo: Codable {
     let next: String
     let prev: String
 }
+
+struct ResourcesWithServiceInfo<Resource: Codable>: Codable {
+    let results: [Resource]
+    let info: ApiServiceInfo
+}
