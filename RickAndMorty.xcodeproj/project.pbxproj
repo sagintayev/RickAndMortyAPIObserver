@@ -18,6 +18,7 @@
 		F75D5CA2250F64FB00115722 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75D5CA1250F64FB00115722 /* Extensions.swift */; };
 		F75D5CA4250FCF8500115722 /* NetworkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75D5CA3250FCF8500115722 /* NetworkHandler.swift */; };
 		F78D8B522510B75B00A2C055 /* GettableFromAPIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78D8B512510B75B00A2C055 /* GettableFromAPIProtocol.swift */; };
+		F78D8B542510DA9200A2C055 /* ApiServiceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78D8B532510DA9200A2C055 /* ApiServiceInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		F75D5CA1250F64FB00115722 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		F75D5CA3250FCF8500115722 /* NetworkHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHandler.swift; sourceTree = "<group>"; };
 		F78D8B512510B75B00A2C055 /* GettableFromAPIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GettableFromAPIProtocol.swift; sourceTree = "<group>"; };
+		F78D8B532510DA9200A2C055 /* ApiServiceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiServiceInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 				F75D5C9B250F392A00115722 /* Character.swift */,
 				F75D5C9D250F3B1900115722 /* Location.swift */,
 				F75D5C9F250F3E1B00115722 /* Episode.swift */,
+				F78D8B532510DA9200A2C055 /* ApiServiceInfo.swift */,
 				F78D8B512510B75B00A2C055 /* GettableFromAPIProtocol.swift */,
 			);
 			path = Models;
@@ -168,6 +171,7 @@
 				F7209288250A1B460011FEAF /* SceneDelegate.swift in Sources */,
 				F75D5C9C250F392A00115722 /* Character.swift in Sources */,
 				F75D5CA2250F64FB00115722 /* Extensions.swift in Sources */,
+				F78D8B542510DA9200A2C055 /* ApiServiceInfo.swift in Sources */,
 				F75D5CA4250FCF8500115722 /* NetworkHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
