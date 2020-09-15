@@ -11,8 +11,8 @@ import Foundation
 struct ApiServiceInfo: Codable {
     let count: Int
     let pages: Int
-    let next: String
-    let prev: String
+    let next: String?
+    let prev: String?
 }
 
 struct ResourcesWithServiceInfo<Resource: Codable>: Codable {
