@@ -47,7 +47,7 @@ extension GettableFromAPI {
     }
     
     static func getByID(_ id: Int, completion: @escaping (Resource) -> Void) {
-        networkHandler.getByPartOfURL(resourceName + "/" + String(id)) { (data, error) in
+        networkHandler.getByPartOfURL("\(resourceName)/\(id)") { (data, error) in
             if let data = data {
                 if let resource = try? getDecoder().decode(Resource.self, from: data) {
                     completion(resource)
