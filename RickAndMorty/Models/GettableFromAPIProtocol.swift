@@ -60,7 +60,6 @@ extension GettableFromAPI {
         networkHandler.getByPartOfURL("\(resourceName)/?page=\(number)") { (data, error) in
             if let data = data {
                 if let resources = try? getDecoder().decode(ResourcesWithServiceInfo<Resource>.self, from: data) {
-                    print(resources.info)
                     completion(resources.results)
                 }
             }
