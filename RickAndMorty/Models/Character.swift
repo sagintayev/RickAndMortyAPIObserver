@@ -25,7 +25,14 @@ struct Character: Codable {
     
     struct LocationShortVersion: Codable {
         let name: String
-        let url: URL
+        let url: URL?
+        
+        init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            name = try container.decode(String.self, forKey: .name)
+            // there are cases when url obtained by API is empty string
+            url = try? container.decode(URL.self, forKey: .url)
+        }
     }
     
     let id: Int
