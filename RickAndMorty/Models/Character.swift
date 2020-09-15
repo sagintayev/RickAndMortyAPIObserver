@@ -54,3 +54,9 @@ struct Character: Codable {
         case episodes = "episode"
     }
 }
+
+extension Character: GettableFromAPI {
+    typealias Resource = Self
+    static var resourceName = "character"
+    static var networkHandler = NetworkHandler()
+}
