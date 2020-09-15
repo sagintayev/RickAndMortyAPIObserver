@@ -23,3 +23,9 @@ struct Episode: Codable {
         case airDate = "air_date"
     }
 }
+
+extension Episode: GettableFromAPI {
+    typealias Resource = Self
+    static var resourceName = "episode"
+    static var networkHandler = NetworkHandler()
+}
