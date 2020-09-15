@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Location: Codable {
+struct Location {
     let id: Int
     let name: String
     let created: Date
@@ -16,4 +16,10 @@ struct Location: Codable {
     let type: String
     let dimension: String
     let residents: [URL]
+}
+
+extension Location: GettableFromAPI {
+    typealias Resource = Self
+    static var resourceName = "location"
+    static var networkHandler = NetworkHandler()
 }
