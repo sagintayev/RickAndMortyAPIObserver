@@ -19,6 +19,7 @@
 		F78D8B522510B75B00A2C055 /* GettableFromAPIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78D8B512510B75B00A2C055 /* GettableFromAPIProtocol.swift */; };
 		F78D8B542510DA9200A2C055 /* ResourcesWithServiceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78D8B532510DA9200A2C055 /* ResourcesWithServiceInfo.swift */; };
 		F7E76FDD2511F09F00008DD4 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E76FDC2511F09F00008DD4 /* TabBarController.swift */; };
+		F7E76FDF25120E1400008DD4 /* CharacterFeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E76FDE25120E1400008DD4 /* CharacterFeedVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		F78D8B512510B75B00A2C055 /* GettableFromAPIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GettableFromAPIProtocol.swift; sourceTree = "<group>"; };
 		F78D8B532510DA9200A2C055 /* ResourcesWithServiceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesWithServiceInfo.swift; sourceTree = "<group>"; };
 		F7E76FDC2511F09F00008DD4 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		F7E76FDE25120E1400008DD4 /* CharacterFeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterFeedVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				F7E76FDC2511F09F00008DD4 /* TabBarController.swift */,
+				F7E76FDE25120E1400008DD4 /* CharacterFeedVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -179,6 +182,7 @@
 				F7E76FDD2511F09F00008DD4 /* TabBarController.swift in Sources */,
 				F75D5C9C250F392A00115722 /* Character.swift in Sources */,
 				F75D5CA2250F64FB00115722 /* Extensions.swift in Sources */,
+				F7E76FDF25120E1400008DD4 /* CharacterFeedVC.swift in Sources */,
 				F78D8B542510DA9200A2C055 /* ResourcesWithServiceInfo.swift in Sources */,
 				F75D5CA4250FCF8500115722 /* NetworkHandler.swift in Sources */,
 			);
