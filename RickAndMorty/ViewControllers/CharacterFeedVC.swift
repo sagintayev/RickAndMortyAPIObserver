@@ -10,12 +10,7 @@ import UIKit
 
 class CharacterFeedVC: UIViewController {
     
-    var characterCollection: UICollectionView {
-        let cv = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-        cv.delegate = self
-        cv.dataSource = self
-        return cv
-    }
+    var characterCollection = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
     override func loadView() {
         super.loadView()
@@ -24,6 +19,8 @@ class CharacterFeedVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        characterCollection.delegate = self
+        characterCollection.dataSource = self
     }
 }
 
