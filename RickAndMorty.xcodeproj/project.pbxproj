@@ -20,6 +20,7 @@
 		F78D8B542510DA9200A2C055 /* ResourcesWithServiceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78D8B532510DA9200A2C055 /* ResourcesWithServiceInfo.swift */; };
 		F7E76FDD2511F09F00008DD4 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E76FDC2511F09F00008DD4 /* TabBarController.swift */; };
 		F7E76FDF25120E1400008DD4 /* CharacterFeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E76FDE25120E1400008DD4 /* CharacterFeedVC.swift */; };
+		F7E76FE22512117600008DD4 /* CharacterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E76FE12512117600008DD4 /* CharacterCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		F78D8B532510DA9200A2C055 /* ResourcesWithServiceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesWithServiceInfo.swift; sourceTree = "<group>"; };
 		F7E76FDC2511F09F00008DD4 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		F7E76FDE25120E1400008DD4 /* CharacterFeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterFeedVC.swift; sourceTree = "<group>"; };
+		F7E76FE12512117600008DD4 /* CharacterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 		F7E76FE0251210B400008DD4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F7E76FE12512117600008DD4 /* CharacterCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -185,6 +188,7 @@
 				F78D8B522510B75B00A2C055 /* GettableFromAPIProtocol.swift in Sources */,
 				F75D5CA0250F3E1B00115722 /* Episode.swift in Sources */,
 				F7209286250A1B460011FEAF /* AppDelegate.swift in Sources */,
+				F7E76FE22512117600008DD4 /* CharacterCell.swift in Sources */,
 				F75D5C9E250F3B1900115722 /* Location.swift in Sources */,
 				F7209288250A1B460011FEAF /* SceneDelegate.swift in Sources */,
 				F7E76FDD2511F09F00008DD4 /* TabBarController.swift in Sources */,
@@ -329,6 +333,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 66WZG572VA;
 				INFOPLIST_FILE = RickAndMorty/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -346,6 +351,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 66WZG572VA;
 				INFOPLIST_FILE = RickAndMorty/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
