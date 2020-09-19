@@ -15,6 +15,11 @@ class CharacterCell: UICollectionViewCell {
         didSet {
             DispatchQueue.main.async {
                 self.imageView.image = self.image
+                if self.image != nil {
+                    self.activityIndicator.stopAnimating()
+                } else {
+                    self.activityIndicator.startAnimating()
+                }
             }
         }
     }
@@ -54,6 +59,14 @@ class CharacterCell: UICollectionViewCell {
         return label
     }()
     
+    private var activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .medium)
+        indicator.hidesWhenStopped = true
+        indicator.setContentHuggingPriority(UILayoutPriority(rawValue: 1), for: .vertical)
+        indicator.startAnimating()
+        return indicator
+    }()
+    
     private func configureCell() {
         layer.cornerRadius = 6
         layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
@@ -63,6 +76,7 @@ class CharacterCell: UICollectionViewCell {
     private func addSubviews() {
         addSubview(imageView)
         addSubview(label)
+        addSubview(activityIndicator)
     }
     
     private func turnOffAutoresizingMask() {
@@ -90,7 +104,13 @@ class CharacterCell: UICollectionViewCell {
             label.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: labelTopToImageViewBottom),
             label.leadingAnchor.constraint(equalTo: imageView.leadingAnchor),
             label.trailingAnchor.constraint(equalTo: imageView.trailingAnchor),
-            label.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: labelBottomToCellBottom)
+            label.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: labelBottomToCellBottom),
+            
+            // MARK: - activityIndicator constraints
+            activityIndicator.topAnchor.constraint(equalTo: imageView.topAnchor),
+            activityIndicator.leadingAnchor.constraint(equalTo: imageView.leadingAnchor),
+            activityIndicator.trailingAnchor.constraint(equalTo: imageView.trailingAnchor),
+            activityIndicator.bottomAnchor.constraint(equalTo: imageView.bottomAnchor),
         ])
     }
 }
