@@ -32,6 +32,12 @@ class CharacterCell: UICollectionViewCell {
         }
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        image = nil
+        labelText = nil
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureCell()
