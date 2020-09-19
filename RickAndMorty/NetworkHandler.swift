@@ -24,7 +24,9 @@ struct NetworkHandler {
     
     func getByURL(_ url: URL, completion: @escaping (Data?, Error?) -> Void) {
         urlSession.dataTask(with: url) { (data, response, error) in
-            completion(data, error)
+            DispatchQueue.main.async {
+                completion(data, error)
+            }
         }.resume()
     }
 }
