@@ -9,8 +9,18 @@
 import UIKit
 
 class TabBarController: UITabBarController {
+    
+    var charactersVC: UINavigationController = {
+        let charactersVC = CharacterFeedVC()
+        charactersVC.title = "Characters"
+        let navController = UINavigationController(rootViewController: charactersVC)
+        navController.tabBarItem = UITabBarItem(title: "Characters", image: nil, selectedImage: nil)
+        return navController
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewControllers = [charactersVC]
+        selectedIndex = 0
     }
 }
