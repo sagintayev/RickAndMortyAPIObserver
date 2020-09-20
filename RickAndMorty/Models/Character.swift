@@ -48,6 +48,14 @@ struct Character: Codable {
     let image: URL
     let episodes: [URL]
     
+    func getImage(completion: @escaping (Data) -> Void) {
+        Character.networkHandler.getByURL(image) { (data, error) in
+            if let data = data {
+                completion(data)
+            }
+        }
+    }
+    
     private enum CodingKeys: String, CodingKey {
         case id, name, created, url, species, type, origin, gender,
             status, location, image
