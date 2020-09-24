@@ -28,7 +28,6 @@ class LabelsStack: UIStackView {
         stackWithLabels.distribution = labelsDistribution
         stackWithLabels.alignment = labelsAlignment
         addArrangedSubview(stackWithLabels)
-        addSubview(stackWithLabels)
     }
     
     init(with texts: [(String, String)]) {
@@ -66,7 +65,7 @@ class LabelsStack: UIStackView {
     private func configureMainStack() {
         axis = .vertical
         alignment = .fill
-        distribution = .fillProportionally
+        distribution = .fill
     }
     
     required init(coder: NSCoder) {
