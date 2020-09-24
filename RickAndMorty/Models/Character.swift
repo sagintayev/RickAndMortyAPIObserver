@@ -40,7 +40,7 @@ struct Character: Codable {
     let created: Date
     let url: URL
     let species: String
-    let type: String
+    let type: String?
     let origin: LocationShortVersion
     let gender: Gender
     let status: Status
@@ -54,6 +54,23 @@ struct Character: Codable {
                 completion(data)
             }
         }
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(Int.self, forKey: .id)
+        name = try container.decode(String.self, forKey: .name)
+        created = try container.decode(Date.self, forKey: .created)
+        url = try container.decode(URL.self, forKey: .url)
+        species = try container.decode(String.self, forKey: .species)
+        let typeString = try container.decode(String.self, forKey: .type)
+        type = typeString != "" ? typeString : nil
+        origin = try container.decode(LocationShortVersion.self, forKey: .origin)
+        gender = try container.decode(Gender.self, forKey: .gender)
+        status = try container.decode(Status.self, forKey: .status)
+        location = try container.decode(LocationShortVersion.self, forKey: .location)
+        image = try container.decode(URL.self, forKey: .image)
+        episodes = try container.decode([URL].self, forKey: .episodes)
     }
     
     private enum CodingKeys: String, CodingKey {
