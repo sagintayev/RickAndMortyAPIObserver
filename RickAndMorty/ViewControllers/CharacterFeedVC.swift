@@ -61,7 +61,12 @@ extension CharacterFeedVC: UICollectionViewDataSource {
 }
 
 extension CharacterFeedVC: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let selectedCharacter = characters?[indexPath.item] else { return }
+        let characterDetailVC = CharacterDetailVC()
+        characterDetailVC.character = selectedCharacter
+        navigationController?.pushViewController(characterDetailVC, animated: true)
+    }
 }
 
 extension CharacterFeedVC: UICollectionViewDelegateFlowLayout {
