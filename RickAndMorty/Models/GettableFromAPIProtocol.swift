@@ -39,8 +39,9 @@ extension GettableFromAPI {
                         gatherAllResourcesGroup.notify(queue: .main) {
                             completion(allResources)
                         }
+                    } else {
+                        completion(allResources)
                     }
-                    completion(allResources)
                 }
             }
         }
