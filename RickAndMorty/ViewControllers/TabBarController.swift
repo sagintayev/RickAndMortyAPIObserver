@@ -25,10 +25,18 @@ class TabBarController: UITabBarController {
         navController.tabBarItem = UITabBarItem(title: "Locations", image: nil, selectedImage: nil)
         return navController
     }()
+    
+    var episodesVC: UINavigationController = {
+        let episodesVC = EpisodeFeedVC()
+        episodesVC.title = "Episodes"
+        let navController = UINavigationController(rootViewController: episodesVC)
+        navController.tabBarItem = UITabBarItem(title: "Episodes", image: nil, selectedImage: nil)
+        return navController
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewControllers = [charactersVC, locationsVC]
+        viewControllers = [charactersVC, locationsVC, episodesVC]
         selectedIndex = 0
     }
 }
