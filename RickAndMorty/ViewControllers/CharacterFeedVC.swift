@@ -24,14 +24,29 @@ class CharacterFeedVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(characterCollection)
-        characterCollection.frame = view.bounds
-        characterCollection.delegate = self
-        characterCollection.dataSource = self
+        setupCharacterCollection()
+        activateConstraints()
         Character.getAll { (characters) in
             self.characters = characters
             self.characterCollection.reloadData()
         }
+    }
+    
+    private func setupCharacterCollection() {
+        view.addSubview(characterCollection)
+        characterCollection.delegate = self
+        characterCollection.dataSource = self
+    }
+    
+    private func activateConstraints() {
+        characterCollection.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            characterCollection.topAnchor.constraint(equalTo: view.topAnchor),
+            characterCollection.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            characterCollection.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            characterCollection.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
     }
 }
 
