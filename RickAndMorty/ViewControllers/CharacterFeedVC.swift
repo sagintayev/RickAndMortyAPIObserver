@@ -29,10 +29,8 @@ class CharacterFeedVC: UIViewController {
         characterCollection.delegate = self
         characterCollection.dataSource = self
         Character.getAll { (characters) in
-            DispatchQueue.main.async {
-                self.characters = characters
-                self.characterCollection.reloadData()
-            }
+            self.characters = characters
+            self.characterCollection.reloadData()
         }
     }
 }
