@@ -6,6 +6,7 @@
 //  Copyright © 2020 Zhanibek Sagintayev. All rights reserved.
 //
 
+import UIKit
 import Foundation
 
 extension Formatter {
@@ -33,5 +34,13 @@ extension JSONDecoder.DateDecodingStrategy {
         } else {
             throw DecodingError.dataCorruptedError(in: container, debugDescription: "Invalid date: " + string)
         }
+    }
+}
+
+extension NSLayoutConstraint {
+    func withPriority(_ priority: Float) -> Self {
+        let priority = UILayoutPriority(priority)
+        self.priority = priority
+        return self
     }
 }
