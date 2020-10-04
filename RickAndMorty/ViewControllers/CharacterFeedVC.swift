@@ -58,13 +58,14 @@ extension CharacterFeedVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CharacterCell.identifier, for: indexPath)
         if let cell = cell as? CharacterCell {
-            let characterID = indexPath.item + 1
-            Character.getByID(characterID) { (character) in
-                cell.tag = characterID
+            if let character = characters?[indexPath.item] {
+                let width = (collectionView.bounds.width - itemsPerRow * spacingBetweenItems) / itemsPerRow
+                cell.cellWidth = width
+                cell.labelText = character.name
+                cell.tag = character.id
                 character.getImage { (imageData) in
-                    if characterID == cell.tag {
+                    if character.id == cell.tag {
                         cell.image = UIImage(data: imageData)
-                        cell.labelText = character.name
                     }
                 }
             }
