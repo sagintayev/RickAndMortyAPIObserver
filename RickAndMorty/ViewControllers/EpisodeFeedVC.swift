@@ -17,9 +17,14 @@ class EpisodeFeedVC: UIViewController {
         super.viewDidLoad()
         setupTableView()
         activateConstraints()
-        Episode.getAll { (episodes) in
-            self.episodes = EpisodesDividedBySeasons(episodes)
-            self.tableView.reloadData()
+        Episode.getAll { (result) in
+            switch result {
+            case .success(let episodes):
+                self.episodes = EpisodesDividedBySeasons(episodes)
+                self.tableView.reloadData()
+            case .failure(let error):
+                print("The error happened: \(error.localizedDescription)")
+            }
         }
     }
     

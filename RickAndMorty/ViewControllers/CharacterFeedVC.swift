@@ -27,9 +27,14 @@ class CharacterFeedVC: UIViewController {
         super.viewDidLoad()
         setupCharacterCollection()
         activateConstraints()
-        Character.getAll { (characters) in
-            self.characters = characters
-            self.characterCollection.reloadData()
+        Character.getAll { (result) in
+            switch result {
+            case .success(let characters):
+                self.characters = characters
+                self.characterCollection.reloadData()
+            case .failure(let error):
+                print("The error happened: \(error.localizedDescription)")
+            }
         }
     }
     

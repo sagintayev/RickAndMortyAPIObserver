@@ -23,9 +23,14 @@ class LocationFeedVC: UIViewController {
         super.viewDidLoad()
         setupLocationTable()
         activateConstraints()
-        Location.getAll { (locations) in
-            self.locations = locations
-            self.locationTable.reloadData()
+        Location.getAll { (result) in
+            switch result {
+            case .success(let locations):
+                self.locations = locations
+                self.locationTable.reloadData()
+            case .failure(let error):
+                print("The error happened: \(error.localizedDescription)")
+            }
         }
     }
     
