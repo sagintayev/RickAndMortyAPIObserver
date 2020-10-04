@@ -11,6 +11,12 @@ import UIKit
 class CharacterCell: UICollectionViewCell {
     static let identifier = "Character"
     
+    var cellWidth: CGFloat = 100 {
+        didSet {
+            contentViewWidthConstraint.constant = cellWidth
+        }
+    }
+    
     var image: UIImage? {
         didSet {
             DispatchQueue.main.async {
@@ -35,7 +41,6 @@ class CharacterCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         image = nil
-        labelText = nil
     }
     
     override init(frame: CGRect) {
@@ -61,6 +66,7 @@ class CharacterCell: UICollectionViewCell {
     private var label: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "MarkerFelt-Thin", size: UIFont.systemFontSize)
+        label.numberOfLines = 0
         label.textAlignment = .center
         return label
     }()
@@ -73,6 +79,8 @@ class CharacterCell: UICollectionViewCell {
         return indicator
     }()
     
+    private lazy var contentViewWidthConstraint = contentView.widthAnchor.constraint(equalToConstant: cellWidth).withPriority(999)
+    
     private func configureCell() {
         layer.cornerRadius = 6
         layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
@@ -80,37 +88,39 @@ class CharacterCell: UICollectionViewCell {
     }
     
     private func addSubviews() {
-        addSubview(imageView)
-        addSubview(label)
-        addSubview(activityIndicator)
+        contentView.addSubview(imageView)
+        contentView.addSubview(label)
+        contentView.addSubview(activityIndicator)
     }
     
     private func turnOffAutoresizingMask() {
-        for view in subviews {
+        for view in contentView.subviews {
             view.translatesAutoresizingMaskIntoConstraints = false
         }
     }
     
     private func activateConstraints() {
         let imageViewTopToCellTop = CGFloat(5)
-        let imageViewLeadingToCellLeading = CGFloat(5)
-        let imageViewTrailingToCellTrailing = CGFloat(-5)
         let labelTopToImageViewBottom = CGFloat(10)
         let labelBottomToCellBottom = CGFloat(-10)
         
         turnOffAutoresizingMask()
         
         NSLayoutConstraint.activate([
+            // MARK: - ContentView constraints
+            contentViewWidthConstraint,
+            
             // MARK: - ImageView constraints
-            imageView.topAnchor.constraint(equalTo: self.topAnchor, constant: imageViewTopToCellTop),
-            imageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: imageViewLeadingToCellLeading),
-            imageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: imageViewTrailingToCellTrailing),
+            imageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: imageViewTopToCellTop),
+            imageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            imageView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.95),
+            imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor).withPriority(999),
             
             // MARK: - Label constraints
             label.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: labelTopToImageViewBottom),
-            label.leadingAnchor.constraint(equalTo: imageView.leadingAnchor),
-            label.trailingAnchor.constraint(equalTo: imageView.trailingAnchor),
-            label.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: labelBottomToCellBottom),
+            label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: labelBottomToCellBottom),
             
             // MARK: - activityIndicator constraints
             activityIndicator.topAnchor.constraint(equalTo: imageView.topAnchor),

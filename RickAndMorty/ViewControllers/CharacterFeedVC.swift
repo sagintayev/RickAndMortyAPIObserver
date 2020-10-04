@@ -9,13 +9,14 @@
 import UIKit
 
 class CharacterFeedVC: UIViewController {
-    let spacingBetweenItems = CGFloat(10)
-    let itemsPerRow = CGFloat(3)
+    let spacingBetweenItems: CGFloat = 10
+    let itemsPerRow: CGFloat = 3
     
     var characters: [Character]?
     
     var characterCollection: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
+        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .systemGray5
         collectionView.register(CharacterCell.self, forCellWithReuseIdentifier: CharacterCell.identifier)
@@ -84,12 +85,6 @@ extension CharacterFeedVC: UICollectionViewDelegate {
 }
 
 extension CharacterFeedVC: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (collectionView.bounds.width - itemsPerRow * spacingBetweenItems) / itemsPerRow
-        let height = width
-        return CGSize(width: width, height: height)
-    }
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return spacingBetweenItems
     }
