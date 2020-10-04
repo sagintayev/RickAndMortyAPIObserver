@@ -9,6 +9,7 @@
 import UIKit
 import Foundation
 
+// MARK: - Formatter
 extension Formatter {
     static let iso8601withFractionalSeconds: DateFormatter = {
         let formatter = DateFormatter()
@@ -25,6 +26,7 @@ extension Formatter {
     }()
 }
 
+// MARK: - DateDecodingStrategy
 extension JSONDecoder.DateDecodingStrategy {
     static let iso8601withFractionalSecondsOrMonthDayYear = custom {
         let container = try $0.singleValueContainer()
@@ -37,6 +39,7 @@ extension JSONDecoder.DateDecodingStrategy {
     }
 }
 
+// MARK: - NSLayoutConstraint
 extension NSLayoutConstraint {
     func withPriority(_ priority: Float) -> Self {
         let priority = UILayoutPriority(priority)
