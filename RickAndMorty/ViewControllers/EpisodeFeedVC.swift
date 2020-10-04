@@ -58,7 +58,7 @@ class EpisodeFeedVC: UIViewController {
 // MARK: - Data source
 extension EpisodeFeedVC: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return episodes?.seasons ?? 1
+        return episodes?.seasons ?? 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
