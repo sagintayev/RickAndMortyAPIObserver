@@ -9,20 +9,12 @@
 import UIKit
 
 class CharacterFeedVC: UIViewController {
+    // MARK: - Properties
     let spacingBetweenItems: CGFloat = 10
     let itemsPerRow: CGFloat = 3
-    
     var characters: [Character]?
     
-    var characterCollection: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .systemGray5
-        collectionView.register(CharacterCell.self, forCellWithReuseIdentifier: CharacterCell.identifier)
-        return collectionView
-    }()
-
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCharacterCollection()
@@ -37,6 +29,16 @@ class CharacterFeedVC: UIViewController {
             }
         }
     }
+    
+    // MARK: - UI Stuff
+    private var characterCollection: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .systemGray5
+        collectionView.register(CharacterCell.self, forCellWithReuseIdentifier: CharacterCell.identifier)
+        return collectionView
+    }()
     
     private func setupCharacterCollection() {
         view.addSubview(characterCollection)
@@ -56,6 +58,7 @@ class CharacterFeedVC: UIViewController {
     }
 }
 
+// MARK: - Data Source
 extension CharacterFeedVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return characters?.count ?? 0
@@ -80,6 +83,7 @@ extension CharacterFeedVC: UICollectionViewDataSource {
     }
 }
 
+// MARK: - Delegate
 extension CharacterFeedVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let selectedCharacter = characters?[indexPath.item] else { return }
@@ -89,6 +93,7 @@ extension CharacterFeedVC: UICollectionViewDelegate {
     }
 }
 
+// MARK: - Flow Layout Delegate
 extension CharacterFeedVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return spacingBetweenItems
