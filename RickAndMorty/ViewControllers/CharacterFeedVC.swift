@@ -19,13 +19,27 @@ class CharacterFeedVC: UIViewController {
         super.viewDidLoad()
         setupCharacterCollection()
         activateConstraints()
+        loadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if let errorAlert = errorAlert {
+            present(errorAlert, animated: true) {
+                self.errorAlert = nil
+            }
+        }
+    }
+    
+    // MARK: - Private methods
+    private func loadData(_ alert: UIAlertAction? = nil) {
         Character.getAll { (result) in
             switch result {
             case .success(let characters):
                 self.characters = characters
                 self.characterCollection.reloadData()
             case .failure(let error):
-                print("The error happened: \(error.localizedDescription)")
+                self.showErrorAlert(title: "Can't load data", message: error.localizedDescription, tryAgainHandler: self.loadData)
             }
         }
     }
@@ -39,6 +53,8 @@ class CharacterFeedVC: UIViewController {
         collectionView.register(CharacterCell.self, forCellWithReuseIdentifier: CharacterCell.identifier)
         return collectionView
     }()
+    
+    private var errorAlert: UIAlertController?
     
     private func setupCharacterCollection() {
         view.addSubview(characterCollection)
@@ -55,6 +71,17 @@ class CharacterFeedVC: UIViewController {
             characterCollection.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             characterCollection.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+    }
+    
+    private func showErrorAlert(title: String?, message: String?, tryAgainHandler: ((UIAlertAction?) -> Void)?) {
+        let errorController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        errorController.addAction(UIAlertAction(title: "Try again", style: .default, handler: tryAgainHandler))
+        errorController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        if viewIfLoaded?.window != nil {
+            present(errorController, animated: true)
+        } else {
+            self.errorAlert = errorController
+        }
     }
 }
 

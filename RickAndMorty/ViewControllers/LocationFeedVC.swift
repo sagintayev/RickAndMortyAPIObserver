@@ -23,13 +23,27 @@ class LocationFeedVC: UIViewController {
         super.viewDidLoad()
         setupLocationTable()
         activateConstraints()
+        loadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if let errorController = errorController {
+            present(errorController, animated: true) {
+                self.errorController = nil
+            }
+        }
+    }
+    
+    // MARK: - Private methods
+    private func loadData(_ alert: UIAlertAction? = nil) {
         Location.getAll { (result) in
             switch result {
             case .success(let locations):
                 self.locations = locations
                 self.locationTable.reloadData()
             case .failure(let error):
-                print("The error happened: \(error.localizedDescription)")
+                self.showErrorController(title: "Can't load data", message: error.localizedDescription, tryAgainHandler: self.loadData)
             }
         }
     }
@@ -43,6 +57,8 @@ class LocationFeedVC: UIViewController {
         return locationTable
     }()
     
+    private var errorController: UIAlertController?
+    
     private func setupLocationTable() {
         locationTable.dataSource = self
         locationTable.delegate = self
@@ -55,6 +71,17 @@ class LocationFeedVC: UIViewController {
         NSLayoutConstraint.constraints(withVisualFormat: "H:|[locationTable]|", options: [], metrics: nil, views: views)
         + NSLayoutConstraint.constraints(withVisualFormat: "V:|[locationTable]|", options: [], metrics: nil, views: views)
         )
+    }
+    
+    private func showErrorController(title: String?, message: String?, tryAgainHandler: ((UIAlertAction?) -> Void)?) {
+        let errorController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        errorController.addAction(UIAlertAction(title: "Try again", style: .default, handler: tryAgainHandler))
+        errorController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        if viewIfLoaded?.window != nil {
+            present(errorController, animated: true)
+        } else {
+            self.errorController = errorController
+        }
     }
 }
 
