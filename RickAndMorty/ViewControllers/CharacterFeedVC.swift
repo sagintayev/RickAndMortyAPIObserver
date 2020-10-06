@@ -49,7 +49,7 @@ class CharacterFeedVC: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .systemGray5
+        collectionView.backgroundColor = UIConstants.mainBackgroundColor
         collectionView.register(CharacterCell.self, forCellWithReuseIdentifier: CharacterCell.identifier)
         return collectionView
     }()

@@ -22,6 +22,7 @@
 		F784BDCF2522F43D0040941D /* EpisodeFeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F784BDCE2522F43D0040941D /* EpisodeFeedVC.swift */; };
 		F78D8B522510B75B00A2C055 /* GettableFromAPIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78D8B512510B75B00A2C055 /* GettableFromAPIProtocol.swift */; };
 		F78D8B542510DA9200A2C055 /* ResourcesWithServiceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78D8B532510DA9200A2C055 /* ResourcesWithServiceInfo.swift */; };
+		F7C2C99E252B26B300BD7E79 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C2C99D252B26B300BD7E79 /* Constants.swift */; };
 		F7DE4FE3251B5BD9000DEF9D /* LabelsStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DE4FE2251B5BD9000DEF9D /* LabelsStack.swift */; };
 		F7E76FDD2511F09F00008DD4 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E76FDC2511F09F00008DD4 /* TabBarController.swift */; };
 		F7E76FDF25120E1400008DD4 /* CharacterFeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E76FDE25120E1400008DD4 /* CharacterFeedVC.swift */; };
@@ -46,6 +47,7 @@
 		F784BDCE2522F43D0040941D /* EpisodeFeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeFeedVC.swift; sourceTree = "<group>"; };
 		F78D8B512510B75B00A2C055 /* GettableFromAPIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GettableFromAPIProtocol.swift; sourceTree = "<group>"; };
 		F78D8B532510DA9200A2C055 /* ResourcesWithServiceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesWithServiceInfo.swift; sourceTree = "<group>"; };
+		F7C2C99D252B26B300BD7E79 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F7DE4FE2251B5BD9000DEF9D /* LabelsStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelsStack.swift; sourceTree = "<group>"; };
 		F7E76FDC2511F09F00008DD4 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		F7E76FDE25120E1400008DD4 /* CharacterFeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterFeedVC.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				F7E76FE0251210B400008DD4 /* Views */,
 				F75D5C9A250F38EA00115722 /* Models */,
 				F7209285250A1B460011FEAF /* AppDelegate.swift */,
+				F7C2C99D252B26B300BD7E79 /* Constants.swift */,
 				F7209287250A1B460011FEAF /* SceneDelegate.swift */,
 				F75D5CA3250FCF8500115722 /* NetworkHandler.swift */,
 				F75D5CA1250F64FB00115722 /* Extensions.swift */,
@@ -217,6 +220,7 @@
 				F78D8B542510DA9200A2C055 /* ResourcesWithServiceInfo.swift in Sources */,
 				F75D5CA4250FCF8500115722 /* NetworkHandler.swift in Sources */,
 				F77008A6251DC6C900F42950 /* LocationFeedVC.swift in Sources */,
+				F7C2C99E252B26B300BD7E79 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

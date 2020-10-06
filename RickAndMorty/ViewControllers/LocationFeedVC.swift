@@ -16,7 +16,7 @@ class LocationFeedVC: UIViewController {
     // MARK: - View Life Cycle
     override func loadView() {
         super.loadView()
-        view.backgroundColor = .systemGray6
+        view.backgroundColor = UIConstants.mainBackgroundColor
     }
 
     override func viewDidLoad() {
@@ -54,6 +54,7 @@ class LocationFeedVC: UIViewController {
         locationTable.register(LocationTableCell.self, forCellReuseIdentifier: LocationTableCell.identifier)
         locationTable.translatesAutoresizingMaskIntoConstraints = false
         locationTable.separatorColor = .clear
+        locationTable.backgroundColor = UIConstants.mainBackgroundColor
         return locationTable
     }()
     
