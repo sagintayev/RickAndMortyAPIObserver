@@ -16,6 +16,6 @@ struct ApiServiceInfo: Codable {
 }
 
 struct ResourcesWithServiceInfo<Resource: Codable>: Codable {
-    let results: [Resource]
+    var results: [Resource]
     let info: ApiServiceInfo
 }
