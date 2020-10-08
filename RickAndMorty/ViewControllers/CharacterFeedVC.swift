@@ -31,13 +31,31 @@ class CharacterFeedVC: UIViewController {
         }
     }
     
-    // MARK: - Private methods
+    // MARK: - Getting Data
+    private var nextPage = 1
+    private var moreDataExists = true
+    private var isDownloading = false
+    
     private func loadData(_ alert: UIAlertAction? = nil) {
-        Character.getAll { (result) in
+        guard moreDataExists == true else { return }
+        guard isDownloading == false else { return }
+        isDownloading = true
+        defer {
+            isDownloading = false
+        }
+        Character.getByPageNumber(nextPage) { (result) in
             switch result {
             case .success(let characters):
-                self.characters = characters
-                self.characterCollection.reloadData()
+                if let existedCharacters = self.characters {
+                    let newIndexPaths = (existedCharacters.count..<existedCharacters.count+characters.results.count).map { IndexPath(item: $0, section: 0) }
+                    self.characters = existedCharacters + characters.results
+                    self.characterCollection.insertItems(at: newIndexPaths)
+                } else {
+                    self.characters = characters.results
+                    self.characterCollection.reloadData()
+                }
+                self.nextPage += 1
+                self.moreDataExists = self.nextPage <= characters.info.pages
             case .failure(let error):
                 self.showErrorAlert(title: "Can't load data", message: error.localizedDescription, tryAgainHandler: self.loadData)
             }
@@ -58,6 +76,7 @@ class CharacterFeedVC: UIViewController {
     
     private func setupCharacterCollection() {
         view.addSubview(characterCollection)
+        characterCollection.showsVerticalScrollIndicator = false
         characterCollection.delegate = self
         characterCollection.dataSource = self
     }
@@ -107,6 +126,12 @@ extension CharacterFeedVC: UICollectionViewDataSource {
             }
         }
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if let characters = characters, indexPath.item == characters.count - 1 {
+            loadData()
+        }
     }
 }
 
