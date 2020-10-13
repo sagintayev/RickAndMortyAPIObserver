@@ -1,14 +1,14 @@
 //
-//  GettableFromAPIProtocol.swift
+//  Protocols.swift
 //  RickAndMorty
 //
-//  Created by Askhat Zhabayev on 2020-09-15.
+//  Created by Askhat Zhabayev on 2020-10-13.
 //  Copyright © 2020 Zhanibek Sagintayev. All rights reserved.
 //
 
 import Foundation
 
-
+// MARK: - GettableFromAPI
 protocol GettableFromAPI: Codable {
     associatedtype Resource: Codable
     
@@ -20,6 +20,7 @@ protocol GettableFromAPI: Codable {
     static func getByPageNumber(_ number: Int, completion: @escaping (Result<ResourcesWithServiceInfo<Resource>, Error>) -> Void)
 }
 
+// MARK: - GettableFromAPI extension
 extension GettableFromAPI {
     
     static func getAll(completion: @escaping (Result<[Resource], Error>) -> Void) {

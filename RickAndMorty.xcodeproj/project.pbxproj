@@ -20,10 +20,10 @@
 		F77008A6251DC6C900F42950 /* LocationFeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77008A5251DC6C900F42950 /* LocationFeedVC.swift */; };
 		F77008A8251F1F3B00F42950 /* LocationTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77008A7251F1F3B00F42950 /* LocationTableCell.swift */; };
 		F784BDCF2522F43D0040941D /* EpisodeFeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F784BDCE2522F43D0040941D /* EpisodeFeedVC.swift */; };
-		F78D8B522510B75B00A2C055 /* GettableFromAPIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78D8B512510B75B00A2C055 /* GettableFromAPIProtocol.swift */; };
 		F78D8B542510DA9200A2C055 /* ResourcesWithServiceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78D8B532510DA9200A2C055 /* ResourcesWithServiceInfo.swift */; };
 		F7C2C99E252B26B300BD7E79 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C2C99D252B26B300BD7E79 /* Constants.swift */; };
 		F7DE4FE3251B5BD9000DEF9D /* LabelsStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DE4FE2251B5BD9000DEF9D /* LabelsStack.swift */; };
+		F7E36B4F25360682003112F1 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E36B4E25360682003112F1 /* Protocols.swift */; };
 		F7E76FDD2511F09F00008DD4 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E76FDC2511F09F00008DD4 /* TabBarController.swift */; };
 		F7E76FDF25120E1400008DD4 /* CharacterFeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E76FDE25120E1400008DD4 /* CharacterFeedVC.swift */; };
 		F7E76FE22512117600008DD4 /* CharacterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E76FE12512117600008DD4 /* CharacterCell.swift */; };
@@ -45,10 +45,10 @@
 		F77008A5251DC6C900F42950 /* LocationFeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationFeedVC.swift; sourceTree = "<group>"; };
 		F77008A7251F1F3B00F42950 /* LocationTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableCell.swift; sourceTree = "<group>"; };
 		F784BDCE2522F43D0040941D /* EpisodeFeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeFeedVC.swift; sourceTree = "<group>"; };
-		F78D8B512510B75B00A2C055 /* GettableFromAPIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GettableFromAPIProtocol.swift; sourceTree = "<group>"; };
 		F78D8B532510DA9200A2C055 /* ResourcesWithServiceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesWithServiceInfo.swift; sourceTree = "<group>"; };
 		F7C2C99D252B26B300BD7E79 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F7DE4FE2251B5BD9000DEF9D /* LabelsStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelsStack.swift; sourceTree = "<group>"; };
+		F7E36B4E25360682003112F1 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		F7E76FDC2511F09F00008DD4 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		F7E76FDE25120E1400008DD4 /* CharacterFeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterFeedVC.swift; sourceTree = "<group>"; };
 		F7E76FE12512117600008DD4 /* CharacterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCell.swift; sourceTree = "<group>"; };
@@ -104,7 +104,6 @@
 				F75D5C9D250F3B1900115722 /* Location.swift */,
 				F75D5C9F250F3E1B00115722 /* Episode.swift */,
 				F78D8B532510DA9200A2C055 /* ResourcesWithServiceInfo.swift */,
-				F78D8B512510B75B00A2C055 /* GettableFromAPIProtocol.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -115,6 +114,7 @@
 				F7C2C99D252B26B300BD7E79 /* Constants.swift */,
 				F75D5CA3250FCF8500115722 /* NetworkHandler.swift */,
 				F75D5CA1250F64FB00115722 /* Extensions.swift */,
+				F7E36B4E25360682003112F1 /* Protocols.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -212,7 +212,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F74A7250251743A300AFB738 /* CharacterDetailVC.swift in Sources */,
-				F78D8B522510B75B00A2C055 /* GettableFromAPIProtocol.swift in Sources */,
 				F75D5CA0250F3E1B00115722 /* Episode.swift in Sources */,
 				F77008A8251F1F3B00F42950 /* LocationTableCell.swift in Sources */,
 				F7209286250A1B460011FEAF /* AppDelegate.swift in Sources */,
@@ -220,6 +219,7 @@
 				F784BDCF2522F43D0040941D /* EpisodeFeedVC.swift in Sources */,
 				F75D5C9E250F3B1900115722 /* Location.swift in Sources */,
 				F7209288250A1B460011FEAF /* SceneDelegate.swift in Sources */,
+				F7E36B4F25360682003112F1 /* Protocols.swift in Sources */,
 				F7E76FDD2511F09F00008DD4 /* TabBarController.swift in Sources */,
 				F75D5C9C250F392A00115722 /* Character.swift in Sources */,
 				F7DE4FE3251B5BD9000DEF9D /* LabelsStack.swift in Sources */,
