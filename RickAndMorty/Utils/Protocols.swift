@@ -18,6 +18,7 @@ protocol GettableFromAPI: Codable {
     static func getAll(completion: @escaping (Result<[Resource], Error>) -> Void)
     static func getByID(_ id: Int, completion: @escaping (Result<Resource, Error>) -> Void)
     static func getByPageNumber(_ number: Int, completion: @escaping (Result<ResourcesWithServiceInfo<Resource>, Error>) -> Void)
+    static func getByFilter(_ filter: Filter, completion: @escaping (Result<ResourcesWithServiceInfo<Resource>, Error>) -> Void)
 }
 
 // MARK: - GettableFromAPI extension
@@ -88,9 +89,31 @@ extension GettableFromAPI {
         }
     }
     
+    static func getByFilter(_ filter: Filter, completion: @escaping (Result<ResourcesWithServiceInfo<Resource>, Error>) -> Void) {
+        networkHandler.getByPartOfURL("\(resourceName)/\(filter.queryString)") { (data, error) in
+            guard let data = data else {
+                if let error = error {
+                    completion(.failure(error))
+                }
+                return
+            }
+            do {
+                let resources = try getDecoder().decode(ResourcesWithServiceInfo<Resource>.self, from: data)
+                completion(.success(resources))
+            } catch let error {
+                completion(.failure(error))
+            }
+        }
+    }
+    
     private static func getDecoder() -> JSONDecoder {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601withFractionalSecondsOrMonthDayYear
         return decoder
     }
+}
+
+// MARK: - Filter
+protocol Filter {
+    var queryString: String { get }
 }

@@ -8,6 +8,7 @@
 
 import Foundation
 
+// MARK: - Character
 struct Character: Codable {
     
     enum Status: String, Codable {
@@ -80,8 +81,66 @@ struct Character: Codable {
     }
 }
 
+// MARK: - Character extension
 extension Character: GettableFromAPI {
     typealias Resource = Self
     static var resourceName = "character"
     static var networkHandler = NetworkHandler()
+}
+
+// MARK: - CharacterFilter
+class CharacterFilter: Filter {
+    @discardableResult
+    func setStatus(_ status: Character.Status?) -> Self {
+        filter["status"] = status?.rawValue
+        return self
+    }
+    
+    @discardableResult
+    func setName(_ name: String?) -> Self {
+        filter["name"] = name
+        return self
+    }
+    
+    @discardableResult
+    func setSpecies(_ species: String?) -> Self {
+        filter["species"] = species
+        return self
+    }
+    
+    @discardableResult
+    func setType(_ type: String?) -> Self {
+        filter["type"] = type
+        return self
+    }
+    
+    @discardableResult
+    func setGender(_ gender: Character.Gender?) -> Self {
+        filter["gender"] = gender?.rawValue
+        return self
+    }
+    
+    @discardableResult
+    func setPage(_ page: Int?) -> Self {
+        if let page = page {
+            filter["page"] = String(page)
+        } else {
+            filter["page"] = nil
+        }
+        return self
+    }
+    
+    var queryString: String {
+        guard !filter.isEmpty else { return "" }
+        var query = "?"
+        for (parameter, value) in filter {
+            guard let value = value else { continue }
+            query.append("\(parameter)=\(value)")
+            query.append("&")
+        }
+        query.removeLast()
+        return query
+    }
+    
+    private var filter = [String: String?]()
 }
