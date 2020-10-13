@@ -84,9 +84,9 @@
 		F7209284250A1B460011FEAF /* RickAndMorty */ = {
 			isa = PBXGroup;
 			children = (
-				F7E76FDB2511E29300008DD4 /* ViewControllers */,
-				F7E76FE0251210B400008DD4 /* Views */,
-				F75D5C9A250F38EA00115722 /* Models */,
+				F7E76FDB2511E29300008DD4 /* Controller */,
+				F7E76FE0251210B400008DD4 /* View */,
+				F75D5C9A250F38EA00115722 /* Model */,
 				F7209285250A1B460011FEAF /* AppDelegate.swift */,
 				F7C2C99D252B26B300BD7E79 /* Constants.swift */,
 				F7209287250A1B460011FEAF /* SceneDelegate.swift */,
@@ -99,7 +99,7 @@
 			path = RickAndMorty;
 			sourceTree = "<group>";
 		};
-		F75D5C9A250F38EA00115722 /* Models */ = {
+		F75D5C9A250F38EA00115722 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				F75D5C9B250F392A00115722 /* Character.swift */,
@@ -108,10 +108,10 @@
 				F78D8B532510DA9200A2C055 /* ResourcesWithServiceInfo.swift */,
 				F78D8B512510B75B00A2C055 /* GettableFromAPIProtocol.swift */,
 			);
-			path = Models;
+			path = Model;
 			sourceTree = "<group>";
 		};
-		F7E76FDB2511E29300008DD4 /* ViewControllers */ = {
+		F7E76FDB2511E29300008DD4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				F7E76FDC2511F09F00008DD4 /* TabBarController.swift */,
@@ -120,17 +120,17 @@
 				F77008A5251DC6C900F42950 /* LocationFeedVC.swift */,
 				F784BDCE2522F43D0040941D /* EpisodeFeedVC.swift */,
 			);
-			path = ViewControllers;
+			path = Controller;
 			sourceTree = "<group>";
 		};
-		F7E76FE0251210B400008DD4 /* Views */ = {
+		F7E76FE0251210B400008DD4 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				F7E76FE12512117600008DD4 /* CharacterCell.swift */,
 				F7DE4FE2251B5BD9000DEF9D /* LabelsStack.swift */,
 				F77008A7251F1F3B00F42950 /* LocationTableCell.swift */,
 			);
-			path = Views;
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
