@@ -84,14 +84,12 @@
 		F7209284250A1B460011FEAF /* RickAndMorty */ = {
 			isa = PBXGroup;
 			children = (
+				F7E36B4D2536064F003112F1 /* Utils */,
 				F7E76FDB2511E29300008DD4 /* Controller */,
 				F7E76FE0251210B400008DD4 /* View */,
 				F75D5C9A250F38EA00115722 /* Model */,
 				F7209285250A1B460011FEAF /* AppDelegate.swift */,
-				F7C2C99D252B26B300BD7E79 /* Constants.swift */,
 				F7209287250A1B460011FEAF /* SceneDelegate.swift */,
-				F75D5CA3250FCF8500115722 /* NetworkHandler.swift */,
-				F75D5CA1250F64FB00115722 /* Extensions.swift */,
 				F720928E250A1B4A0011FEAF /* Assets.xcassets */,
 				F7209290250A1B4A0011FEAF /* LaunchScreen.storyboard */,
 				F7209293250A1B4A0011FEAF /* Info.plist */,
@@ -109,6 +107,16 @@
 				F78D8B512510B75B00A2C055 /* GettableFromAPIProtocol.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		F7E36B4D2536064F003112F1 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				F7C2C99D252B26B300BD7E79 /* Constants.swift */,
+				F75D5CA3250FCF8500115722 /* NetworkHandler.swift */,
+				F75D5CA1250F64FB00115722 /* Extensions.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		F7E76FDB2511E29300008DD4 /* Controller */ = {
