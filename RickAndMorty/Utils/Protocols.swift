@@ -27,6 +27,11 @@ protocol Filter {
     mutating func setPage(_ page: Int?)
 }
 
+// MARK: - SearchControllerDelegate
+protocol SearchControllerDelegate {
+    func searchStarted(with filter: Filter)
+}
+
 // MARK: - GettableFromAPI extension
 extension GettableFromAPI {
     
