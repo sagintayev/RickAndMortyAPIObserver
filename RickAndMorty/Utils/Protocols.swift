@@ -43,6 +43,10 @@ protocol CharacterFilterViewDelegate {
     func searchButtonTapped()
 }
 
+protocol Toggleable {
+    var toggleHandler: (() -> Void)? { get set }
+}
+
 // MARK: - GettableFromAPI extension
 extension GettableFromAPI {
     
