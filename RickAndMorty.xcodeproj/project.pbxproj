@@ -24,6 +24,7 @@
 		F78EF8F0253E0DB000E7A55C /* CharacterFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78EF8EF253E0DB000E7A55C /* CharacterFilterView.swift */; };
 		F78EF8F4253E0E0100E7A55C /* CharacterFilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F78EF8F3253E0E0100E7A55C /* CharacterFilterView.xib */; };
 		F78EF8F7253E116F00E7A55C /* ContainerWithSideController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78EF8F6253E116F00E7A55C /* ContainerWithSideController.swift */; };
+		F78EF8FA253E13FA00E7A55C /* CharacterSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78EF8F9253E13FA00E7A55C /* CharacterSearchController.swift */; };
 		F7C2C99E252B26B300BD7E79 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C2C99D252B26B300BD7E79 /* Constants.swift */; };
 		F7DE4FE3251B5BD9000DEF9D /* LabelsStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DE4FE2251B5BD9000DEF9D /* LabelsStack.swift */; };
 		F7E36B4F25360682003112F1 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E36B4E25360682003112F1 /* Protocols.swift */; };
@@ -52,6 +53,7 @@
 		F78EF8EF253E0DB000E7A55C /* CharacterFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterFilterView.swift; sourceTree = "<group>"; };
 		F78EF8F3253E0E0100E7A55C /* CharacterFilterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterFilterView.xib; sourceTree = "<group>"; };
 		F78EF8F6253E116F00E7A55C /* ContainerWithSideController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerWithSideController.swift; sourceTree = "<group>"; };
+		F78EF8F9253E13FA00E7A55C /* CharacterSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterSearchController.swift; sourceTree = "<group>"; };
 		F7C2C99D252B26B300BD7E79 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F7DE4FE2251B5BD9000DEF9D /* LabelsStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelsStack.swift; sourceTree = "<group>"; };
 		F7E36B4E25360682003112F1 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				F77008A5251DC6C900F42950 /* LocationFeedVC.swift */,
 				F784BDCE2522F43D0040941D /* EpisodeFeedVC.swift */,
 				F78EF8F6253E116F00E7A55C /* ContainerWithSideController.swift */,
+				F78EF8F9253E13FA00E7A55C /* CharacterSearchController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 				F784BDCF2522F43D0040941D /* EpisodeFeedVC.swift in Sources */,
 				F75D5C9E250F3B1900115722 /* Location.swift in Sources */,
 				F7209288250A1B460011FEAF /* SceneDelegate.swift in Sources */,
+				F78EF8FA253E13FA00E7A55C /* CharacterSearchController.swift in Sources */,
 				F7E36B4F25360682003112F1 /* Protocols.swift in Sources */,
 				F7E76FDD2511F09F00008DD4 /* TabBarController.swift in Sources */,
 				F75D5C9C250F392A00115722 /* Character.swift in Sources */,
