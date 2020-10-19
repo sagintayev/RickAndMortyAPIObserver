@@ -12,8 +12,11 @@ class TabBarController: UITabBarController {
     
     var charactersVC: UINavigationController = {
         let charactersVC = CharacterFeedVC()
-        charactersVC.title = "Characters"
-        let navController = UINavigationController(rootViewController: charactersVC)
+        let characterSearchController = CharacterSearchController()
+        characterSearchController.delegate = charactersVC
+        let charactersContainer = ContainerWithSideController(contentController: charactersVC, sideController: characterSearchController)
+        charactersContainer.title = "Characters"
+        let navController = UINavigationController(rootViewController: charactersContainer)
         navController.tabBarItem = UITabBarItem(title: "Characters", image: nil, selectedImage: nil)
         return navController
     }()
