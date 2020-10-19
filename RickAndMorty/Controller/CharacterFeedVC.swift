@@ -35,6 +35,8 @@ class CharacterFeedVC: UIViewController {
     private var nextPage = 1
     private var moreDataExists = true
     private var isDownloading = false
+    private var erasePreviousData = false
+    private var currentFilter: Filter = CharacterFilter()
     
     private func loadData(_ alert: UIAlertAction? = nil) {
         guard moreDataExists == true else { return }
@@ -43,23 +45,34 @@ class CharacterFeedVC: UIViewController {
         defer {
             isDownloading = false
         }
-        Character.getByPageNumber(nextPage) { (result) in
+        Character.getByFilter(currentFilter) { (result) in
             switch result {
             case .success(let characters):
-                if let existedCharacters = self.characters {
+                if self.erasePreviousData == false, let existedCharacters = self.characters {
                     let newIndexPaths = (existedCharacters.count..<existedCharacters.count+characters.results.count).map { IndexPath(item: $0, section: 0) }
                     self.characters = existedCharacters + characters.results
                     self.characterCollection.insertItems(at: newIndexPaths)
                 } else {
                     self.characters = characters.results
                     self.characterCollection.reloadData()
+                    self.erasePreviousData = false
                 }
                 self.nextPage += 1
+                self.currentFilter.setPage(self.nextPage)
                 self.moreDataExists = self.nextPage <= characters.info.pages
             case .failure(let error):
                 self.showErrorAlert(title: "Can't load data", message: error.localizedDescription, tryAgainHandler: self.loadData)
             }
         }
+    }
+    
+    private func setNewFilter(_ filter: Filter) -> Bool {
+        guard filter.queryString != currentFilter.queryString else { return false }
+        currentFilter = filter
+        nextPage = 1
+        moreDataExists = true
+        erasePreviousData = true
+        return true
     }
     
     // MARK: - UI Stuff
@@ -149,5 +162,15 @@ extension CharacterFeedVC: UICollectionViewDelegate {
 extension CharacterFeedVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return spacingBetweenItems
+    }
+}
+
+
+// MARK: - Search Controller Delegate
+extension CharacterFeedVC: SearchControllerDelegate {
+    func searchStarted(with filter: Filter) {
+        if setNewFilter(filter) {
+            loadData()
+        }
     }
 }
