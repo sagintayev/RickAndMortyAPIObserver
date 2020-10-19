@@ -32,6 +32,17 @@ protocol SearchControllerDelegate {
     func searchStarted(with filter: Filter)
 }
 
+// MARK: - CharacterFilterViewDelegate
+protocol CharacterFilterViewDelegate {
+    func nameTextFieldValueChanged(_ name: String?)
+    func speciesTextFieldValueChanged(_ species: String?)
+    func typeTextFieldValueChanged(_ type: String?)
+    func statusSegmentedControlValueChanged(_ selectedIndex: Int)
+    func genderSegmentedControlValueChanged(_ selectedIndex: Int)
+    func cancelButtonTapped()
+    func searchButtonTapped()
+}
+
 // MARK: - GettableFromAPI extension
 extension GettableFromAPI {
     
