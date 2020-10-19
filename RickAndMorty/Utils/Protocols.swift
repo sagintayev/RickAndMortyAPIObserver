@@ -21,6 +21,12 @@ protocol GettableFromAPI: Codable {
     static func getByFilter(_ filter: Filter, completion: @escaping (Result<ResourcesWithServiceInfo<Resource>, Error>) -> Void)
 }
 
+// MARK: - Filter
+protocol Filter {
+    var queryString: String { get }
+    mutating func setPage(_ page: Int?)
+}
+
 // MARK: - GettableFromAPI extension
 extension GettableFromAPI {
     
@@ -111,9 +117,4 @@ extension GettableFromAPI {
         decoder.dateDecodingStrategy = .iso8601withFractionalSecondsOrMonthDayYear
         return decoder
     }
-}
-
-// MARK: - Filter
-protocol Filter {
-    var queryString: String { get }
 }
