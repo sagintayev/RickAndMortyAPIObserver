@@ -81,7 +81,7 @@ struct Character: Codable {
     }
 }
 
-// MARK: - Character extension
+// MARK: - Character extension GettableFromAPI
 extension Character: GettableFromAPI {
     typealias Resource = Self
     static var resourceName = "character"
@@ -89,45 +89,42 @@ extension Character: GettableFromAPI {
 }
 
 // MARK: - CharacterFilter
-class CharacterFilter: Filter {
-    @discardableResult
-    func setStatus(_ status: Character.Status?) -> Self {
-        filter["status"] = status?.rawValue
-        return self
-    }
-    
-    @discardableResult
-    func setName(_ name: String?) -> Self {
+struct CharacterFilter {
+    mutating func setName(_ name: String?) {
         filter["name"] = name
-        return self
     }
     
-    @discardableResult
-    func setSpecies(_ species: String?) -> Self {
+    mutating func setSpecies(_ species: String?) {
         filter["species"] = species
-        return self
     }
     
-    @discardableResult
-    func setType(_ type: String?) -> Self {
+    mutating func setType(_ type: String?) {
         filter["type"] = type
-        return self
     }
     
-    @discardableResult
-    func setGender(_ gender: Character.Gender?) -> Self {
+    mutating func setStatus(_ status: Character.Status?) {
+        filter["status"] = status?.rawValue
+    }
+    
+    mutating func setGender(_ gender: Character.Gender?) {
         filter["gender"] = gender?.rawValue
-        return self
     }
     
-    @discardableResult
-    func setPage(_ page: Int?) -> Self {
+    mutating func reset() {
+        filter.removeAll()
+    }
+    
+    private var filter = [String: String?]()
+}
+
+// MARK: - CharacterFilter extension Filter
+extension CharacterFilter: Filter {
+    mutating func setPage(_ page: Int?) {
         if let page = page {
             filter["page"] = String(page)
         } else {
             filter["page"] = nil
         }
-        return self
     }
     
     var queryString: String {
@@ -141,6 +138,4 @@ class CharacterFilter: Filter {
         query.removeLast()
         return query
     }
-    
-    private var filter = [String: String?]()
 }
