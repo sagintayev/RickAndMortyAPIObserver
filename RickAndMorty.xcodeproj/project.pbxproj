@@ -21,6 +21,8 @@
 		F77008A8251F1F3B00F42950 /* LocationTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77008A7251F1F3B00F42950 /* LocationTableCell.swift */; };
 		F784BDCF2522F43D0040941D /* EpisodeFeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F784BDCE2522F43D0040941D /* EpisodeFeedVC.swift */; };
 		F78D8B542510DA9200A2C055 /* ResourcesWithServiceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78D8B532510DA9200A2C055 /* ResourcesWithServiceInfo.swift */; };
+		F78EF8F0253E0DB000E7A55C /* CharacterFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78EF8EF253E0DB000E7A55C /* CharacterFilterView.swift */; };
+		F78EF8F4253E0E0100E7A55C /* CharacterFilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F78EF8F3253E0E0100E7A55C /* CharacterFilterView.xib */; };
 		F7C2C99E252B26B300BD7E79 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C2C99D252B26B300BD7E79 /* Constants.swift */; };
 		F7DE4FE3251B5BD9000DEF9D /* LabelsStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DE4FE2251B5BD9000DEF9D /* LabelsStack.swift */; };
 		F7E36B4F25360682003112F1 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E36B4E25360682003112F1 /* Protocols.swift */; };
@@ -46,6 +48,8 @@
 		F77008A7251F1F3B00F42950 /* LocationTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableCell.swift; sourceTree = "<group>"; };
 		F784BDCE2522F43D0040941D /* EpisodeFeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeFeedVC.swift; sourceTree = "<group>"; };
 		F78D8B532510DA9200A2C055 /* ResourcesWithServiceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesWithServiceInfo.swift; sourceTree = "<group>"; };
+		F78EF8EF253E0DB000E7A55C /* CharacterFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterFilterView.swift; sourceTree = "<group>"; };
+		F78EF8F3253E0E0100E7A55C /* CharacterFilterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterFilterView.xib; sourceTree = "<group>"; };
 		F7C2C99D252B26B300BD7E79 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F7DE4FE2251B5BD9000DEF9D /* LabelsStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelsStack.swift; sourceTree = "<group>"; };
 		F7E36B4E25360682003112F1 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
@@ -137,6 +141,8 @@
 				F7E76FE12512117600008DD4 /* CharacterCell.swift */,
 				F7DE4FE2251B5BD9000DEF9D /* LabelsStack.swift */,
 				F77008A7251F1F3B00F42950 /* LocationTableCell.swift */,
+				F78EF8EF253E0DB000E7A55C /* CharacterFilterView.swift */,
+				F78EF8F3253E0E0100E7A55C /* CharacterFilterView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -201,6 +207,7 @@
 			files = (
 				F7209292250A1B4A0011FEAF /* LaunchScreen.storyboard in Resources */,
 				F720928F250A1B4A0011FEAF /* Assets.xcassets in Resources */,
+				F78EF8F4253E0E0100E7A55C /* CharacterFilterView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +235,7 @@
 				F78D8B542510DA9200A2C055 /* ResourcesWithServiceInfo.swift in Sources */,
 				F75D5CA4250FCF8500115722 /* NetworkHandler.swift in Sources */,
 				F77008A6251DC6C900F42950 /* LocationFeedVC.swift in Sources */,
+				F78EF8F0253E0DB000E7A55C /* CharacterFilterView.swift in Sources */,
 				F7C2C99E252B26B300BD7E79 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

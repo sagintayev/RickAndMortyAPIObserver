@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="cld-VS-Bk2">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CJa-9J-8QR">
+                    <rect key="frame" x="20" y="74" width="45" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" systemColor="systemGray4Color"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hm4-aC-cM6">
+                    <rect key="frame" x="20.5" y="105" width="373" height="34"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mKr-Du-uWo">
+                    <rect key="frame" x="20" y="169" width="49" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" systemColor="systemGray4Color"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="PFt-Q9-Lsb">
+                    <rect key="frame" x="20.5" y="200" width="373" height="32"/>
+                    <segments>
+                        <segment title="╳"/>
+                        <segment title="Alive"/>
+                        <segment title="Dead"/>
+                        <segment title="Unknown"/>
+                    </segments>
+                </segmentedControl>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uZb-R8-pa6">
+                    <rect key="frame" x="20.5" y="292" width="373" height="34"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Species" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ooa-fF-LrG">
+                    <rect key="frame" x="20" y="261" width="60.5" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" systemColor="systemGray4Color"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VGM-v1-KXF">
+                    <rect key="frame" x="20.5" y="387" width="373" height="34"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fgm-D9-LlI">
+                    <rect key="frame" x="20" y="356" width="37.5" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" systemColor="systemGray4Color"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Gender" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="peT-zd-aO3">
+                    <rect key="frame" x="20" y="457" width="56.5" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" systemColor="systemGray4Color"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L5z-zm-IIk">
+                    <rect key="frame" x="20.5" y="750" width="373" height="42"/>
+                    <color key="backgroundColor" systemColor="systemBlueColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                    <state key="normal" title="Search">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vpj-Vl-ubI">
+                    <rect key="frame" x="20.5" y="688" width="373" height="42"/>
+                    <color key="backgroundColor" red="1" green="0.394510317" blue="0.42535807129999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="25"/>
+                    <state key="normal" title="Cancel">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                </button>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="pNO-uQ-yqg">
+                    <rect key="frame" x="20.5" y="488" width="373" height="32"/>
+                    <segments>
+                        <segment title="╳"/>
+                        <segment title="🙎🏻‍♂️"/>
+                        <segment title="🙍🏻‍♀️"/>
+                        <segment title="🙅🏻🙅🏻‍♀️"/>
+                        <segment title="🤷🏻🤷🏻‍♀️"/>
+                    </segments>
+                </segmentedControl>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="X7Z-nk-ABt"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="L5z-zm-IIk" firstAttribute="top" secondItem="Vpj-Vl-ubI" secondAttribute="bottom" constant="20" id="2Px-om-Z1y"/>
+                <constraint firstItem="uZb-R8-pa6" firstAttribute="top" secondItem="ooa-fF-LrG" secondAttribute="bottom" constant="10" id="3X9-sS-VrS"/>
+                <constraint firstItem="Vpj-Vl-ubI" firstAttribute="leading" secondItem="L5z-zm-IIk" secondAttribute="leading" id="6RO-FC-tKc"/>
+                <constraint firstItem="Fgm-D9-LlI" firstAttribute="leading" secondItem="CJa-9J-8QR" secondAttribute="leading" id="79Z-BW-c7B"/>
+                <constraint firstItem="ooa-fF-LrG" firstAttribute="top" secondItem="PFt-Q9-Lsb" secondAttribute="bottom" constant="30" id="7PA-ui-Yvx"/>
+                <constraint firstItem="hm4-aC-cM6" firstAttribute="centerX" secondItem="X7Z-nk-ABt" secondAttribute="centerX" id="7eo-QE-0eg"/>
+                <constraint firstItem="Vpj-Vl-ubI" firstAttribute="trailing" secondItem="L5z-zm-IIk" secondAttribute="trailing" id="87o-v9-0Uy"/>
+                <constraint firstItem="VGM-v1-KXF" firstAttribute="top" secondItem="Fgm-D9-LlI" secondAttribute="bottom" constant="10" id="8BF-bI-0XN"/>
+                <constraint firstItem="PFt-Q9-Lsb" firstAttribute="trailing" secondItem="hm4-aC-cM6" secondAttribute="trailing" id="DkB-8S-BQI"/>
+                <constraint firstItem="CJa-9J-8QR" firstAttribute="top" secondItem="X7Z-nk-ABt" secondAttribute="top" constant="30" id="Evc-7R-qH0"/>
+                <constraint firstItem="hm4-aC-cM6" firstAttribute="width" secondItem="cld-VS-Bk2" secondAttribute="width" multiplier="0.9" id="FS1-NB-Anh"/>
+                <constraint firstItem="pNO-uQ-yqg" firstAttribute="trailing" secondItem="hm4-aC-cM6" secondAttribute="trailing" id="FS2-T4-CrQ"/>
+                <constraint firstItem="hm4-aC-cM6" firstAttribute="top" secondItem="CJa-9J-8QR" secondAttribute="bottom" constant="10" id="IRe-To-ysP"/>
+                <constraint firstItem="mKr-Du-uWo" firstAttribute="leading" secondItem="CJa-9J-8QR" secondAttribute="leading" id="Lzy-gY-Fk7"/>
+                <constraint firstItem="VGM-v1-KXF" firstAttribute="trailing" secondItem="hm4-aC-cM6" secondAttribute="trailing" id="OOv-JM-RWG"/>
+                <constraint firstItem="L5z-zm-IIk" firstAttribute="trailing" secondItem="hm4-aC-cM6" secondAttribute="trailing" id="QqP-SJ-e5o"/>
+                <constraint firstItem="peT-zd-aO3" firstAttribute="top" secondItem="VGM-v1-KXF" secondAttribute="bottom" constant="36" id="RL1-FR-nTe"/>
+                <constraint firstItem="peT-zd-aO3" firstAttribute="leading" secondItem="CJa-9J-8QR" secondAttribute="leading" id="Ucv-jC-vbr"/>
+                <constraint firstItem="pNO-uQ-yqg" firstAttribute="top" secondItem="peT-zd-aO3" secondAttribute="bottom" constant="10" id="V5U-Ze-nTq"/>
+                <constraint firstItem="CJa-9J-8QR" firstAttribute="leading" secondItem="X7Z-nk-ABt" secondAttribute="leading" constant="20" id="YxK-Dv-6nz"/>
+                <constraint firstItem="uZb-R8-pa6" firstAttribute="trailing" secondItem="hm4-aC-cM6" secondAttribute="trailing" id="bMM-sp-Vbk"/>
+                <constraint firstItem="L5z-zm-IIk" firstAttribute="leading" secondItem="hm4-aC-cM6" secondAttribute="leading" id="chU-T8-jSm"/>
+                <constraint firstItem="pNO-uQ-yqg" firstAttribute="leading" secondItem="hm4-aC-cM6" secondAttribute="leading" id="dSa-Cr-gQa"/>
+                <constraint firstItem="VGM-v1-KXF" firstAttribute="leading" secondItem="hm4-aC-cM6" secondAttribute="leading" id="fdJ-sy-B89"/>
+                <constraint firstItem="uZb-R8-pa6" firstAttribute="leading" secondItem="hm4-aC-cM6" secondAttribute="leading" id="g9R-mK-kGB"/>
+                <constraint firstItem="Fgm-D9-LlI" firstAttribute="top" secondItem="uZb-R8-pa6" secondAttribute="bottom" constant="30" id="jdn-yx-7J1"/>
+                <constraint firstItem="X7Z-nk-ABt" firstAttribute="bottom" secondItem="L5z-zm-IIk" secondAttribute="bottom" constant="50" id="jft-dq-eEm"/>
+                <constraint firstItem="PFt-Q9-Lsb" firstAttribute="top" secondItem="mKr-Du-uWo" secondAttribute="bottom" constant="10" id="mOI-1p-sK2"/>
+                <constraint firstItem="ooa-fF-LrG" firstAttribute="leading" secondItem="CJa-9J-8QR" secondAttribute="leading" id="waQ-FZ-vEh"/>
+                <constraint firstItem="mKr-Du-uWo" firstAttribute="top" secondItem="hm4-aC-cM6" secondAttribute="bottom" constant="30" id="y9U-yx-Lvi"/>
+                <constraint firstItem="PFt-Q9-Lsb" firstAttribute="leading" secondItem="hm4-aC-cM6" secondAttribute="leading" id="ygI-KC-sKB"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-242" y="-129"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
