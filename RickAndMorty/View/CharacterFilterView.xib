@@ -9,7 +9,18 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CharacterFilterView" customModule="RickAndMorty" customModuleProvider="target">
+            <connections>
+                <outlet property="cancelButton" destination="Vpj-Vl-ubI" id="Uhk-lz-l9b"/>
+                <outlet property="contentView" destination="cld-VS-Bk2" id="Sgr-wV-EvC"/>
+                <outlet property="genderSegmentedControl" destination="pNO-uQ-yqg" id="uY6-6s-eJB"/>
+                <outlet property="nameTextFiled" destination="hm4-aC-cM6" id="ynK-b3-J0S"/>
+                <outlet property="searchButton" destination="L5z-zm-IIk" id="Vsh-ce-2mN"/>
+                <outlet property="speciesTextField" destination="uZb-R8-pa6" id="nZu-5a-iAQ"/>
+                <outlet property="statusSegmentedControl" destination="PFt-Q9-Lsb" id="osT-81-vZs"/>
+                <outlet property="typeTextField" destination="VGM-v1-KXF" id="lYd-sg-Gyx"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="cld-VS-Bk2">
             <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
