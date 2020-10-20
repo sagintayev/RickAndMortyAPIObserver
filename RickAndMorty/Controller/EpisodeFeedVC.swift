@@ -10,8 +10,9 @@ import UIKit
 
 class EpisodeFeedVC: UIViewController {
     // MARK: - Properties
-    var episodes: EpisodesDividedBySeasons?
-    
+    var episodesDividedBySeasons: EpisodesDividedBySeasons?
+    var episodes: [Episode]?
+        
     // MARK: View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +35,8 @@ class EpisodeFeedVC: UIViewController {
         Episode.getAll { (result) in
             switch result {
             case .success(let episodes):
-                self.episodes = EpisodesDividedBySeasons(episodes)
+                self.episodesDividedBySeasons = EpisodesDividedBySeasons(episodes)
+                self.episodes = self.episodesDividedBySeasons == nil ? episodes : nil
                 self.tableView.reloadData()
             case .failure(let error):
                 self.showErrorController(title: "Can't load data", message: error.localizedDescription, tryAgainHandler: self.loadData)
@@ -44,12 +46,12 @@ class EpisodeFeedVC: UIViewController {
     
     // MARK: UI Stuff
     private var tableView = UITableView(frame: .zero, style: .insetGrouped)
-    
+    private let tableCellIdentifier = "cell"
     private var errorController: UIAlertController?
     
     private func setupTableView() {
         view.addSubview(tableView)
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: tableCellIdentifier)
         tableView.delegate = self
         tableView.dataSource = self
     }
@@ -85,26 +87,34 @@ class EpisodeFeedVC: UIViewController {
 // MARK: - Data source
 extension EpisodeFeedVC: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return episodes?.seasons ?? 0
+        return episodesDividedBySeasons?.seasons ?? (episodes == nil ? 0 : 1)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let season = section + 1
-        return episodes?[season]?.count ?? 0
+        return episodesDividedBySeasons?[season]?.count ?? episodes?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let season = indexPath.section + 1
-        let episode = indexPath.row
+        let cell = tableView.dequeueReusableCell(withIdentifier: tableCellIdentifier, for: indexPath)
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        if let episode = episodes?[season]?[episode] {
-            cell.textLabel?.text = "E\(episode.episode): \(episode.name)"
+        if let episodesDividedBySeasons = episodesDividedBySeasons {
+            let season = indexPath.section + 1
+            let episode = indexPath.row
+            
+            if let episode = episodesDividedBySeasons[season]?[episode] {
+                let episodeNumber = episode.episode == nil ? "" : String(episode.episode!)
+                cell.textLabel?.text = "E\(episodeNumber): \(episode.name)"
+            }
+        } else if let episodes = episodes {
+            let episode = episodes[indexPath.row]
+            cell.textLabel?.text = "\(episode.code): \(episode.name)"
         }
         return cell
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        guard episodesDividedBySeasons != nil else { return nil }
         let season = section + 1
         let title = "Season \(season)"
         return title

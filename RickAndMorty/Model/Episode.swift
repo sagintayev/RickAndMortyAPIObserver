@@ -17,15 +17,16 @@ struct Episode: Codable {
     let airDate: Date
     let characters: [URL]
     
-    var season: Int {
-        let firstIndex = code.index(code.firstIndex(of: "S")!, offsetBy: 1)
-        let secondIndex = code.firstIndex(of: "E")!
-        return Int(String(code[firstIndex..<secondIndex]))!
+    var season: Int? {
+        guard let seasonIndex = code.firstIndex(of: "S") else { return nil }
+        guard let episodeIndex = code.firstIndex(of: "E") else { return nil }
+        let startIndex = code.index(seasonIndex, offsetBy: 1)
+        return Int(String(code[startIndex..<episodeIndex]))
     }
-    var episode: Int {
-        let firstIndex = code.index(code.firstIndex(of: "E")!, offsetBy: 1)
-        let secondIndex = code.endIndex
-        return Int(String(code[firstIndex..<secondIndex]))!
+    var episode: Int? {
+        guard let episodeIndex = code.firstIndex(of: "E") else { return nil }
+        let startIndex = code.index(episodeIndex, offsetBy: 1)
+        return Int(String(code[startIndex...]))
     }
     
     private enum CodingKeys: String, CodingKey  {
@@ -55,11 +56,11 @@ struct EpisodesDividedBySeasons {
         }
     }
     
-    init(_ episodes: [Episode]) {
+    init?(_ episodes: [Episode]) {
         for episode in episodes {
-            let season = episode.season
+            guard let season = episode.season else { return nil }
             if self.episodes.keys.contains(season) {
-                self.episodes[season]!.append(episode)
+                self.episodes[season]?.append(episode)
             } else {
                 self.episodes[season] = [episode]
             }
