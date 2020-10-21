@@ -16,8 +16,8 @@ class CharacterSearchController: UIViewController, Toggleable {
     var delegate: SearchControllerDelegate?
     
     // MARK: - UI Properties
-    var filterView = CharacterFilterView()
-    var filterViewWidthMultiplier: CGFloat = 0.7
+    private var filterView = CharacterFilterView()
+    private var scrollView = UIScrollView()
     
     private let statusSegmentedControlValues: [Int: Character.Status?] = [
         0: nil,
@@ -34,30 +34,36 @@ class CharacterSearchController: UIViewController, Toggleable {
         4: .unknown
     ]
     
-    // MARK: - Init
-    init() {
-        super.init(nibName: nil, bundle: nil)
+    // MARK: - Life Cycle
+    override func viewDidLoad() {
+        view.backgroundColor = .white
+        setupScrollView()
         setupFilterView()
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    // MARK: - Toggable
+    // MARK: - Toggleable
     var toggleHandler: (() -> Void)?
     
     // MARK: - Private methods
+    private func setupScrollView() {
+        view.addSubview(scrollView)
+        
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+    }
+    
     private func setupFilterView() {
-        view.addSubview(filterView)
+        scrollView.addSubview(filterView)
         
         filterView.delegate = self
-        
+
         filterView.translatesAutoresizingMaskIntoConstraints = false
-        filterView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        filterView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-        filterView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -view.frame.width*(1-filterViewWidthMultiplier)).isActive = true
-        filterView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        filterView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
+        filterView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
+        filterView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
     }
 }
 

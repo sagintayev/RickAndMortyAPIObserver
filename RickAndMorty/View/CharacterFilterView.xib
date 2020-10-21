@@ -81,7 +81,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L5z-zm-IIk">
-                    <rect key="frame" x="20.5" y="750" width="373" height="42"/>
+                    <rect key="frame" x="20.5" y="706" width="373" height="42"/>
                     <color key="backgroundColor" systemColor="systemBlueColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
                     <state key="normal" title="Search">
@@ -89,7 +89,7 @@
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vpj-Vl-ubI">
-                    <rect key="frame" x="20.5" y="688" width="373" height="42"/>
+                    <rect key="frame" x="20.5" y="644" width="373" height="42"/>
                     <color key="backgroundColor" red="1" green="0.394510317" blue="0.42535807129999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="25"/>
                     <state key="normal" title="Cancel">
@@ -123,6 +123,7 @@
                 <constraint firstItem="CJa-9J-8QR" firstAttribute="top" secondItem="X7Z-nk-ABt" secondAttribute="top" constant="30" id="Evc-7R-qH0"/>
                 <constraint firstItem="hm4-aC-cM6" firstAttribute="width" secondItem="cld-VS-Bk2" secondAttribute="width" multiplier="0.9" id="FS1-NB-Anh"/>
                 <constraint firstItem="pNO-uQ-yqg" firstAttribute="trailing" secondItem="hm4-aC-cM6" secondAttribute="trailing" id="FS2-T4-CrQ"/>
+                <constraint firstItem="Vpj-Vl-ubI" firstAttribute="top" secondItem="pNO-uQ-yqg" secondAttribute="bottom" constant="125" id="IMb-ln-SIE"/>
                 <constraint firstItem="hm4-aC-cM6" firstAttribute="top" secondItem="CJa-9J-8QR" secondAttribute="bottom" constant="10" id="IRe-To-ysP"/>
                 <constraint firstItem="mKr-Du-uWo" firstAttribute="leading" secondItem="CJa-9J-8QR" secondAttribute="leading" id="Lzy-gY-Fk7"/>
                 <constraint firstItem="VGM-v1-KXF" firstAttribute="trailing" secondItem="hm4-aC-cM6" secondAttribute="trailing" id="OOv-JM-RWG"/>
@@ -137,14 +138,14 @@
                 <constraint firstItem="VGM-v1-KXF" firstAttribute="leading" secondItem="hm4-aC-cM6" secondAttribute="leading" id="fdJ-sy-B89"/>
                 <constraint firstItem="uZb-R8-pa6" firstAttribute="leading" secondItem="hm4-aC-cM6" secondAttribute="leading" id="g9R-mK-kGB"/>
                 <constraint firstItem="Fgm-D9-LlI" firstAttribute="top" secondItem="uZb-R8-pa6" secondAttribute="bottom" constant="30" id="jdn-yx-7J1"/>
-                <constraint firstItem="X7Z-nk-ABt" firstAttribute="bottom" secondItem="L5z-zm-IIk" secondAttribute="bottom" constant="50" id="jft-dq-eEm"/>
                 <constraint firstItem="PFt-Q9-Lsb" firstAttribute="top" secondItem="mKr-Du-uWo" secondAttribute="bottom" constant="10" id="mOI-1p-sK2"/>
+                <constraint firstItem="X7Z-nk-ABt" firstAttribute="bottom" secondItem="L5z-zm-IIk" secondAttribute="bottom" constant="94" id="oza-Tr-3CQ"/>
                 <constraint firstItem="ooa-fF-LrG" firstAttribute="leading" secondItem="CJa-9J-8QR" secondAttribute="leading" id="waQ-FZ-vEh"/>
                 <constraint firstItem="mKr-Du-uWo" firstAttribute="top" secondItem="hm4-aC-cM6" secondAttribute="bottom" constant="30" id="y9U-yx-Lvi"/>
                 <constraint firstItem="PFt-Q9-Lsb" firstAttribute="leading" secondItem="hm4-aC-cM6" secondAttribute="leading" id="ygI-KC-sKB"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-242" y="-129"/>
+            <point key="canvasLocation" x="-242.0289855072464" y="-129.24107142857142"/>
         </view>
     </objects>
     <resources>
