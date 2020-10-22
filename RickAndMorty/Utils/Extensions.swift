@@ -47,3 +47,25 @@ extension NSLayoutConstraint {
         return self
     }
 }
+
+// MARK: - UIView
+extension UIView {
+    func embedIn(_ superview: UIView, fromTop topOffset: CGFloat? = 0 ,fromLeading leadingOffset: CGFloat? = 0, fromTrailing trailingOffset: CGFloat? = 0, fromBottom bottomOffset: CGFloat? = 0) {
+        superview.addSubview(self)
+        translatesAutoresizingMaskIntoConstraints = false
+        var constraints = [NSLayoutConstraint]()
+        if let topOffset = topOffset {
+            constraints.append(topAnchor.constraint(equalTo: superview.topAnchor, constant: topOffset))
+        }
+        if let leadingOffset = leadingOffset {
+            constraints.append(leadingAnchor.constraint(equalTo: superview.leadingAnchor, constant: leadingOffset))
+        }
+        if let trailingOffset = trailingOffset {
+            constraints.append(trailingAnchor.constraint(equalTo: superview.trailingAnchor, constant: trailingOffset))
+        }
+        if let bottomOffset = bottomOffset {
+            constraints.append(bottomAnchor.constraint(equalTo: superview.bottomAnchor, constant: bottomOffset))
+        }
+        NSLayoutConstraint.activate(constraints)
+    }
+}
