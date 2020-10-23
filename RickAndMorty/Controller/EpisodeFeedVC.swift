@@ -123,5 +123,20 @@ extension EpisodeFeedVC: UITableViewDataSource {
 
 // MARK: - Delegate
 extension EpisodeFeedVC: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        var episode: Episode!
+        if let episodesDividedBySeasons = episodesDividedBySeasons {
+            let seasonNumber = indexPath.section + 1
+            let episodeNumber = indexPath.row
+            if let season = episodesDividedBySeasons[seasonNumber] {
+                episode = season[episodeNumber]
+            }
+        } else if let episodes = episodes {
+            episode = episodes[indexPath.row]
+        }
+        guard episode != nil else { return }
+        let episodeController = EpisodeDetailController()
+        episodeController.episode = episode
+        navigationController?.pushViewController(episodeController, animated: true)
+    }
 }
