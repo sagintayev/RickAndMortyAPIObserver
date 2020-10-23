@@ -16,7 +16,7 @@ protocol GettableFromAPI: Codable {
     static var networkHandler: NetworkHandler { get set }
     
     static func getAll(completion: @escaping (Result<[Resource], Error>) -> Void)
-    static func getByID(_ id: Int, completion: @escaping (Result<Resource, Error>) -> Void)
+    static func getByIDs(_ id: [Int], completion: @escaping (Result<[Resource], Error>) -> Void)
     static func getByPageNumber(_ number: Int, completion: @escaping (Result<ResourcesWithServiceInfo<Resource>, Error>) -> Void)
     static func getByFilter(_ filter: Filter, completion: @escaping (Result<ResourcesWithServiceInfo<Resource>, Error>) -> Void)
 }
@@ -81,8 +81,8 @@ extension GettableFromAPI {
         }
     }
     
-    static func getByID(_ id: Int, completion: @escaping (Result<Resource, Error>) -> Void) {
-        networkHandler.getByPartOfURL("\(resourceName)/\(id)") { (data, error) in
+    static func getByIDs(_ ids: [Int], completion: @escaping (Result<[Resource], Error>) -> Void) {
+        networkHandler.getByPartOfURL("\(resourceName)/\(ids.map {String($0)}.joined(separator: ","))") { (data, error) in
             guard let data = data else {
                 if let error = error {
                     completion(.failure(error))
@@ -90,7 +90,7 @@ extension GettableFromAPI {
                 return
             }
             do {
-                let resource = try getDecoder().decode(Resource.self, from: data)
+                let resource = try getDecoder().decode([Resource].self, from: data)
                 completion(.success(resource))
             } catch let error {
                 completion(.failure(error))
