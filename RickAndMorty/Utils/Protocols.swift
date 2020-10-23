@@ -132,6 +132,18 @@ extension GettableFromAPI {
         }
     }
     
+    static func getIDFromUrl(_ url: URL) -> Int? {
+        let url = url.absoluteString
+        return getIDFromUrl(url)
+    }
+    
+    static func getIDFromUrl(_ url: String) -> Int? {
+        guard url.contains(resourceName) else { return nil }
+        guard let lastSlashIndex = url.lastIndex(of: "/") else { return nil }
+        let idStartIndex = url.index(lastSlashIndex, offsetBy: 1)
+        return Int(url[idStartIndex...])
+    }
+    
     private static func getDecoder() -> JSONDecoder {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601withFractionalSecondsOrMonthDayYear
