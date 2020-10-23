@@ -11,7 +11,7 @@ import UIKit
 class TabBarController: UITabBarController {
     
     var charactersVC: UINavigationController = {
-        let charactersVC = CharacterFeedVC()
+        let charactersVC = CharacterFeedController()
         let characterSearchController = CharacterSearchController()
         characterSearchController.delegate = charactersVC
         let charactersContainer = ContainerWithSideController(contentController: charactersVC, sideController: characterSearchController)
