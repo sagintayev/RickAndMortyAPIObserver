@@ -9,77 +9,45 @@
 import UIKit
 
 class LocationTableCell: UITableViewCell {
-    static let identifier = "LocationTableCell"
+    // MARK: - Properties
+    static let identifier = "Location Table Cell"
     
     var name: String? {
         didSet {
-            mainLabel.text = name
+            locationView.name = name
         }
     }
     
     var type: String? {
         didSet {
-            guard let type = type else { return }
-            labelsStack.createLabelStack(withText: "Type", and: type)
+            locationView.type = type
         }
     }
     
     var dimension: String? {
         didSet {
-            guard let dimension = dimension else { return }
-            labelsStack.createLabelStack(withText: "Dimension", and: dimension)
+            locationView.dimension = dimension
         }
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        labelsStack = LabelsStack()
-    }
+    var locationView = LocationDetailView()
     
+    // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        layer.borderWidth = 1
-        addSubviews()
-        activateConstraints()
+        backgroundColor = UIConstants.mainBackgroundColor
+        setupLocationView()
     }
     
-    private var mainLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont(name: "Futura-Bold", size: 30)
-        label.textAlignment = .center
-        label.numberOfLines = 0
-        return label
-    }()
-    
-    private var labelsStack = LabelsStack()
-    
-    private func addSubviews() {
-        addSubview(mainLabel)
-        addSubview(labelsStack)
-    }
-    
-    private func turnOffAutoresizingMask() {
-        mainLabel.translatesAutoresizingMaskIntoConstraints = false
-        labelsStack.translatesAutoresizingMaskIntoConstraints = false
-    }
-    
-    private func activateConstraints() {
-        turnOffAutoresizingMask()
-        NSLayoutConstraint.activate([
-            // MARK: - mainLabel constraints
-            mainLabel.topAnchor.constraint(equalTo: topAnchor, constant: 5),
-            mainLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-            mainLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
-            
-            // MARK: - labelsStack constraints
-            labelsStack.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: 10),
-            labelsStack.leadingAnchor.constraint(equalTo: leadingAnchor),
-            labelsStack.trailingAnchor.constraint(equalTo: trailingAnchor),
-            labelsStack.bottomAnchor.constraint(equalTo: bottomAnchor)
-        ])
-    }
-        
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupLocationView() {
+        let horizontalPadding: CGFloat = 10
+        let verticalPadding: CGFloat = 15
+        locationView.embedIn(self, fromTop: verticalPadding, fromLeading: horizontalPadding, fromTrailing: -horizontalPadding, fromBottom: -verticalPadding)
+        locationView.layer.cornerRadius = 10
+        locationView.backgroundColor = .white
     }
 }
