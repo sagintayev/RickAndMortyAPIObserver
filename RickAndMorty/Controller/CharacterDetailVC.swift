@@ -84,7 +84,7 @@ class CharacterDetailVC: UIViewController {
         for (text1, text2) in [
             ("Name", character.name),
             ("Status", character.status.rawValue),
-            ("Species", character.species),
+            ("Species", character.species.rawValue),
             ("Type", character.type),
             ("Gender", character.gender.rawValue),
             ("Origin location", character.origin.name),

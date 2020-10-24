@@ -24,6 +24,20 @@ struct Character: Codable {
         case unknown = "unknown"
     }
     
+    enum Species: String, Codable {
+        case alien = "Alien"
+        case robot = "Robot"
+        case cronenberg = "Cronenberg"
+        case human = "Human"
+        case disease = "Disease"
+        case humanoid = "Humanoid"
+        case mythologicalCreature = "Mythological Creature"
+        case poopybutthole = "Poopybutthole"
+        case animal = "Animal"
+        case planet = "Planet"
+        case unknown = "unknown"
+    }
+    
     struct LocationShortVersion: Codable {
         let name: String
         let url: URL?
@@ -40,7 +54,7 @@ struct Character: Codable {
     let name: String
     let created: Date
     let url: URL
-    let species: String
+    let species: Species
     let type: String?
     let origin: LocationShortVersion
     let gender: Gender
@@ -63,7 +77,7 @@ struct Character: Codable {
         name = try container.decode(String.self, forKey: .name)
         created = try container.decode(Date.self, forKey: .created)
         url = try container.decode(URL.self, forKey: .url)
-        species = try container.decode(String.self, forKey: .species)
+        species = try container.decode(Species.self, forKey: .species)
         let typeString = try container.decode(String.self, forKey: .type)
         type = typeString != "" ? typeString : nil
         origin = try container.decode(LocationShortVersion.self, forKey: .origin)
