@@ -45,7 +45,7 @@ class LocationDetailView: UIView {
     }()
     private var typeLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 26)
+        label.font = .systemFont(ofSize: 22)
         label.numberOfLines = 0
         return label
     }()
@@ -57,7 +57,7 @@ class LocationDetailView: UIView {
     }()
     private var dimensionLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 26)
+        label.font = .systemFont(ofSize: 22)
         label.numberOfLines = 0
         return label
     }()
@@ -129,5 +129,32 @@ class LocationDetailView: UIView {
     
     private func setPriorities() {
         nameLabel.setContentHuggingPriority(UILayoutPriority.defaultLow - 1, for: .vertical)
+    }
+}
+
+class LocationDetailCollectionReusableView: UICollectionReusableView {
+    static let identifier = "Location Reusable View"
+    var view: UIView? {
+        didSet {
+            view?.embedIn(self, fromBottom: nil)
+            view?.bottomAnchor.constraint(equalTo: charactersLabel.topAnchor, constant: -15).isActive = true
+            view?.setContentHuggingPriority(UILayoutPriority.defaultLow-1, for: .vertical)
+        }
+    }
+    private let charactersLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .systemGray4
+        label.text = "Residents"
+        label.font = .systemFont(ofSize: 38)
+        return label
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        charactersLabel.embedIn(self, fromTop: nil, fromLeading: 10, fromBottom: -10)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
