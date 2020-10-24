@@ -106,7 +106,10 @@ extension LocationFeedVC: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 extension LocationFeedVC: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        return nil
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let location = locations?[indexPath.row] else { return }
+        let locationDetailController = LocationDetailController()
+        locationDetailController.location = location
+        navigationController?.pushViewController(locationDetailController, animated: true)
     }
 }
