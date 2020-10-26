@@ -108,8 +108,8 @@ struct CharacterFilter {
         filter["name"] = name
     }
     
-    mutating func setSpecies(_ species: String?) {
-        filter["species"] = species
+    mutating func setSpecies(_ species: Character.Species?) {
+        filter["species"] = species?.rawValue
     }
     
     mutating func setType(_ type: String?) {

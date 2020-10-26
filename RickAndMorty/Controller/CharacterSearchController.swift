@@ -74,7 +74,9 @@ extension CharacterSearchController: CharacterFilterViewDelegate {
     }
     
     func speciesTextFieldValueChanged(_ species: String?) {
-        filter.setSpecies(species)
+        if let species = species {
+            filter.setSpecies(Character.Species(rawValue: species))
+        }
     }
     
     func typeTextFieldValueChanged(_ type: String?) {
