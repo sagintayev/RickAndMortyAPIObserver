@@ -24,7 +24,6 @@ protocol GettableFromAPI: Codable {
 // MARK: - Filter
 protocol Filter {
     var queryString: String { get }
-    mutating func setPage(_ page: Int?)
 }
 
 // MARK: - SearchControllerDelegate

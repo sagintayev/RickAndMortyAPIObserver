@@ -70,27 +70,27 @@ class CharacterSearchController: UIViewController, Toggleable {
 // MARK: - Character Filter View Delegate
 extension CharacterSearchController: CharacterFilterViewDelegate {
     func nameTextFieldValueChanged(_ name: String?) {
-        filter.setName(name)
+        filter.name = name
     }
     
     func speciesTextFieldValueChanged(_ species: String?) {
         if let species = species {
-            filter.setSpecies(Character.Species(rawValue: species))
+            filter.species = Character.Species(rawValue: species)
         }
     }
     
     func typeTextFieldValueChanged(_ type: String?) {
-        filter.setType(type)
+        filter.type = type
     }
     
     func statusSegmentedControlValueChanged(_ selectedIndex: Int) {
         guard let status = statusSegmentedControlValues[selectedIndex] else { return }
-        filter.setStatus(status)
+        filter.status = status
     }
     
     func genderSegmentedControlValueChanged(_ selectedIndex: Int) {
         guard let gender = genderSegmentedControlValues[selectedIndex] else { return }
-        filter.setGender(gender)
+        filter.gender = gender
     }
     
     func cancelButtonTapped() {

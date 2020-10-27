@@ -29,7 +29,7 @@ class CharacterFeedController: CharacterCollectionController {
     private var moreDataExists = true
     private var isDownloading = false
     private var erasePreviousData = false
-    private var currentFilter: Filter = CharacterFilter()
+    private var currentFilter = CharacterFilter()
     
     private func loadData(_ alert: UIAlertAction? = nil) {
         guard moreDataExists == true else { return }
@@ -51,7 +51,7 @@ class CharacterFeedController: CharacterCollectionController {
                     self.erasePreviousData = false
                 }
                 self.nextPage += 1
-                self.currentFilter.setPage(self.nextPage)
+                self.currentFilter.page = self.nextPage
                 self.moreDataExists = self.nextPage <= characters.info.pages
             case .failure(let error):
                 self.showErrorAlert(title: "Can't load data", message: error.localizedDescription, tryAgainHandler: self.loadData)
@@ -61,6 +61,7 @@ class CharacterFeedController: CharacterCollectionController {
     
     private func setNewFilter(_ filter: Filter) -> Bool {
         guard filter.queryString != currentFilter.queryString else { return false }
+        guard let filter = filter as? CharacterFilter else { return false }
         currentFilter = filter
         nextPage = 1
         moreDataExists = true

@@ -88,7 +88,7 @@ struct Character: Codable {
         episodes = try container.decode([URL].self, forKey: .episodes)
     }
     
-    private enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case id, name, created, url, species, type, origin, gender,
             status, location, image
         case episodes = "episode"
@@ -104,43 +104,76 @@ extension Character: GettableFromAPI {
 
 // MARK: - CharacterFilter
 struct CharacterFilter {
-    mutating func setName(_ name: String?) {
-        filter["name"] = name
+    var available = true
+    var page: Int {
+        get {
+            guard let page = filter[pageKey] as? String else { return 1 }
+            return Int(page) ?? 1
+        }
+        set {
+            filter[pageKey] = String(newValue)
+        }
     }
     
-    mutating func setSpecies(_ species: Character.Species?) {
-        filter["species"] = species?.rawValue
+    var name: String? {
+        get {
+            return filter[nameKey] ?? nil
+        }
+        set {
+            filter[nameKey] = newValue
+        }
     }
     
-    mutating func setType(_ type: String?) {
-        filter["type"] = type
+    var species: Character.Species? {
+        get {
+            guard let species = filter[speciesKey] as? String else { return nil }
+            return Character.Species(rawValue: species)
+        }
+        set {
+            filter[speciesKey] = newValue?.rawValue
+        }
     }
     
-    mutating func setStatus(_ status: Character.Status?) {
-        filter["status"] = status?.rawValue
+    var type: String? {
+        get {
+            return filter[typeKey] ?? nil
+        }
+        set {
+            filter[typeKey] = newValue
+        }
     }
     
-    mutating func setGender(_ gender: Character.Gender?) {
-        filter["gender"] = gender?.rawValue
+    var status: Character.Status? {
+        get {
+            guard let status = filter[statusKey] as? String else { return nil }
+            return Character.Status(rawValue: status)
+        }
+        set {
+            filter[statusKey] = newValue?.rawValue
+        }
     }
     
-    mutating func reset() {
-        filter.removeAll()
+    var gender: Character.Gender? {
+        get {
+            guard let gender = filter[genderKey] as? String else { return nil }
+            return Character.Gender(rawValue: gender)
+        }
+        set {
+            filter[genderKey] = newValue?.rawValue
+        }
     }
     
+    private let pageKey = "page"
+    private let nameKey = Character.CodingKeys.name.rawValue
+    private let speciesKey = Character.CodingKeys.species.rawValue
+    private let typeKey = Character.CodingKeys.type.rawValue
+    private let statusKey = Character.CodingKeys.status.rawValue
+    private let genderKey = Character.CodingKeys.gender.rawValue
     private var filter = [String: String?]()
 }
 
 // MARK: - CharacterFilter extension Filter
 extension CharacterFilter: Filter {
-    mutating func setPage(_ page: Int?) {
-        if let page = page {
-            filter["page"] = String(page)
-        } else {
-            filter["page"] = nil
-        }
-    }
-    
     var queryString: String {
         guard !filter.isEmpty else { return "" }
         var query = "?"
