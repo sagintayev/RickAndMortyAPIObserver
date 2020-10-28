@@ -22,7 +22,7 @@ class LocationDetailController: CharacterCollectionController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIConstants.mainBackgroundColor
-        characterCollection.register(LocationDetailCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: LocationDetailCollectionReusableView.identifier)
+        collectionView.register(LocationDetailCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: LocationDetailCollectionReusableView.identifier)
     }
     
     // MARK: - UI
@@ -43,8 +43,8 @@ class LocationDetailController: CharacterCollectionController {
         Character.getByIDs(characterIDs) { (result) in
             switch result {
             case .success(let characters):
-                self.characters = characters
-                self.characterCollection.reloadData()
+                self.characters[0] = characters
+                self.collectionView.reloadData()
             case .failure(let error):
                 print(error)
             }

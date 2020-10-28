@@ -21,7 +21,7 @@ class EpisodeDetailController: CharacterCollectionController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIConstants.mainBackgroundColor
-        characterCollection.register(EpisodeDetailCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: EpisodeDetailCollectionReusableView.identifier)
+        collectionView.register(EpisodeDetailCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: EpisodeDetailCollectionReusableView.identifier)
     }
     
     // MARK: - UI
@@ -43,8 +43,8 @@ class EpisodeDetailController: CharacterCollectionController {
         Character.getByIDs(characterIDs) { (result) in
             switch result {
             case .success(let characters):
-                self.characters = characters
-                self.characterCollection.reloadData()
+                self.characters[0] = characters
+                self.collectionView.reloadData()
             case .failure(let error):
                 print(error)
             }

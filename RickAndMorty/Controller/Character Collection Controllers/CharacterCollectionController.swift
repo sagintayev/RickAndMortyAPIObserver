@@ -12,7 +12,25 @@ class CharacterCollectionController: UIViewController {
     // MARK: - Properties
     let spacingBetweenItems: CGFloat = 10
     let itemsPerRow: CGFloat = 3
-    var characters: [Character]?
+    var characters = [Int: [Character]]()
+    
+    lazy var collectionView: UICollectionView = {
+        let layout = getLayout()
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = UIConstants.mainBackgroundColor
+        return collectionView
+    }()
+    
+    // MARK: - Methods
+    func getLayout() -> UICollectionViewLayout {
+        let layout = UICollectionViewFlowLayout()
+        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        return layout
+    }
+    
+    func getCharacterBy(_ indexPath: IndexPath) -> Character? {
+        return characters[indexPath.section]?[indexPath.row]
+    }
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -20,52 +38,49 @@ class CharacterCollectionController: UIViewController {
         setupCharacterCollection()
     }
     
-    var characterCollection: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = UIConstants.mainBackgroundColor
-        return collectionView
-    }()
+    func setupCharacterCollection() {
+        collectionView.embedIn(view)
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(CharacterCell.self, forCellWithReuseIdentifier: CharacterCell.identifier)
+    }
     
-    private func setupCharacterCollection() {
-        characterCollection.embedIn(view)
-        characterCollection.showsVerticalScrollIndicator = false
-        characterCollection.delegate = self
-        characterCollection.dataSource = self
-        characterCollection.register(CharacterCell.self, forCellWithReuseIdentifier: CharacterCell.identifier)
+    // MARK: - Private methods
+    private func configure(_ cell: inout UICollectionViewCell, with character: Character) {
+        guard let cell = cell as? CharacterCell else { return }
+        let width = (collectionView.bounds.width - itemsPerRow * spacingBetweenItems) / itemsPerRow
+        cell.cellWidth = width
+        cell.labelText = character.name
+        cell.tag = character.id
+        character.getImage { (imageData) in
+            if character.id == cell.tag {
+                cell.image = UIImage(data: imageData)
+            }
+        }
     }
 }
 
 // MARK: - Collection View Data Source
 extension CharacterCollectionController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return characters?.count ?? 0
+        return characters[section]?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CharacterCell.identifier, for: indexPath)
-        if let cell = cell as? CharacterCell {
-            if let character = characters?[indexPath.item] {
-                let width = (collectionView.bounds.width - itemsPerRow * spacingBetweenItems) / itemsPerRow
-                cell.cellWidth = width
-                cell.labelText = character.name
-                cell.tag = character.id
-                character.getImage { (imageData) in
-                    if character.id == cell.tag {
-                        cell.image = UIImage(data: imageData)
-                    }
-                }
-            }
+        var cell = collectionView.dequeueReusableCell(withReuseIdentifier: CharacterCell.identifier, for: indexPath)
+        if let character = getCharacterBy(indexPath) {
+            configure(&cell, with: character)
         }
         return cell
     }
+
 }
 
 // MARK: - Collection View Delegate
 extension CharacterCollectionController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let selectedCharacter = characters?[indexPath.item] else { return }
+        guard let selectedCharacter = getCharacterBy(indexPath) else { return }
         let characterDetailVC = CharacterDetailVC()
         characterDetailVC.character = selectedCharacter
         navigationController?.pushViewController(characterDetailVC, animated: true)
