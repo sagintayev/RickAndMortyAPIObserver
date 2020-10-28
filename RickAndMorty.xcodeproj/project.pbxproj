@@ -33,6 +33,7 @@
 		F7D016362546CA7A00E7D6A7 /* CharacterCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D016352546CA7A00E7D6A7 /* CharacterCollectionController.swift */; };
 		F7DE4FE3251B5BD9000DEF9D /* LabelsStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DE4FE2251B5BD9000DEF9D /* LabelsStack.swift */; };
 		F7E36B4F25360682003112F1 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E36B4E25360682003112F1 /* Protocols.swift */; };
+		F7E47EB82545A69900D5FE74 /* HeaderLabelReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E47EB72545A69900D5FE74 /* HeaderLabelReusableView.swift */; };
 		F7E76FDD2511F09F00008DD4 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E76FDC2511F09F00008DD4 /* TabBarController.swift */; };
 		F7E76FDF25120E1400008DD4 /* CharacterFeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E76FDE25120E1400008DD4 /* CharacterFeedController.swift */; };
 		F7E76FE22512117600008DD4 /* CharacterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E76FE12512117600008DD4 /* CharacterCell.swift */; };
@@ -67,6 +68,7 @@
 		F7D016352546CA7A00E7D6A7 /* CharacterCollectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCollectionController.swift; sourceTree = "<group>"; };
 		F7DE4FE2251B5BD9000DEF9D /* LabelsStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelsStack.swift; sourceTree = "<group>"; };
 		F7E36B4E25360682003112F1 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		F7E47EB72545A69900D5FE74 /* HeaderLabelReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderLabelReusableView.swift; sourceTree = "<group>"; };
 		F7E76FDC2511F09F00008DD4 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		F7E76FDE25120E1400008DD4 /* CharacterFeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterFeedController.swift; sourceTree = "<group>"; };
 		F7E76FE12512117600008DD4 /* CharacterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCell.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				F78EF8F3253E0E0100E7A55C /* CharacterFilterView.xib */,
 				F7B8321925404DF800B0C91D /* EpisodeDetailView.swift */,
 				F76AC9D1254369C300D88E9D /* LocationDetailView.swift */,
+				F7E47EB72545A69900D5FE74 /* HeaderLabelReusableView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -252,6 +255,7 @@
 				F76AC9D2254369C300D88E9D /* LocationDetailView.swift in Sources */,
 				F75D5CA0250F3E1B00115722 /* Episode.swift in Sources */,
 				F77008A8251F1F3B00F42950 /* LocationTableCell.swift in Sources */,
+				F7E47EB82545A69900D5FE74 /* HeaderLabelReusableView.swift in Sources */,
 				F7209286250A1B460011FEAF /* AppDelegate.swift in Sources */,
 				F78EF8F7253E116F00E7A55C /* ContainerWithSideController.swift in Sources */,
 				F7E76FE22512117600008DD4 /* CharacterCell.swift in Sources */,
