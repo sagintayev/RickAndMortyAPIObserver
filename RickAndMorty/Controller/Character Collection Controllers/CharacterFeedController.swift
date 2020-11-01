@@ -9,9 +9,15 @@
 import UIKit
 
 class CharacterFeedController: CharacterCollectionController {
+    // MARK: - Properties
+    var headersBySection = [Int: String]()
+    var filtersBySection = [Int: CharacterFilter]()
+    let selectedSection = 0
+    
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        createFilters()
         loadData()
     }
     
@@ -24,51 +30,57 @@ class CharacterFeedController: CharacterCollectionController {
         }
     }
     
-    // MARK: - Getting Data
-    private var nextPage = 1
-    private var moreDataExists = true
-    private var isDownloading = false
-    private var erasePreviousData = false
-    private var currentFilter = CharacterFilter()
+    func createFilters() {
+        filtersBySection[0] = CharacterFilter()
+    }
     
-    private func loadData(_ alert: UIAlertAction? = nil) {
-        guard moreDataExists == true else { return }
-        guard isDownloading == false else { return }
-        isDownloading = true
-        defer {
-            isDownloading = false
-        }
-        Character.getByFilter(currentFilter) { (result) in
+    func loadData() {
+        loadData(for: selectedSection)
+    }
+    
+    // MARK: - Data Loading
+    func loadData(for section: Int) {
+        guard var filter = filtersBySection[section] else { return }
+        guard filter.available == true else { return }
+        filtersBySection[section]?.available = false
+        Character.getByFilter(filter) { (result) in
             switch result {
             case .success(let characters):
-                if self.erasePreviousData == false, let existedCharacters = self.characters {
-                    let newIndexPaths = (existedCharacters.count..<existedCharacters.count+characters.results.count).map { IndexPath(item: $0, section: 0) }
-                    self.characters = existedCharacters + characters.results
-                    self.characterCollection.insertItems(at: newIndexPaths)
-                } else {
-                    self.characters = characters.results
-                    self.characterCollection.reloadData()
-                    self.erasePreviousData = false
-                }
-                self.nextPage += 1
-                self.currentFilter.page = self.nextPage
-                self.moreDataExists = self.nextPage <= characters.info.pages
+                self.updateCollectionView(with: characters.results, for: section)
+                filter.page += 1
+                filter.available = filter.page <= characters.info.pages
             case .failure(let error):
-                self.showErrorAlert(title: "Can't load data", message: error.localizedDescription, tryAgainHandler: self.loadData)
+                filter.available = true
+                self.showErrorAlert(title: "Couldn't load data", message: error.localizedDescription) { (_) in
+                    self.loadData(for: section)
+                }
             }
+            self.filtersBySection[section] = filter
         }
+    }
+    
+    func updateCollectionView(with characters: [Character], for section: Int = 0) {
+        var indexPathsToInsert: [IndexPath]
+        if let existedCharacters = self.characters[section] {
+            indexPathsToInsert = (existedCharacters.count..<existedCharacters.count + characters.count).map { IndexPath(item: $0, section: section) }
+            self.characters[section]?.append(contentsOf: characters)
+        } else {
+            indexPathsToInsert = (0..<characters.count).map { IndexPath(item: $0, section: section) }
+            self.characters[section] = characters
+        }
+        self.collectionView.insertItems(at: indexPathsToInsert)
     }
     
     private func setNewFilter(_ filter: Filter) -> Bool {
-        guard filter.queryString != currentFilter.queryString else { return false }
+        guard filter.queryString != filtersBySection[selectedSection]?.queryString else { return false }
         guard let filter = filter as? CharacterFilter else { return false }
-        currentFilter = filter
-        nextPage = 1
-        moreDataExists = true
-        erasePreviousData = true
+        filtersBySection[selectedSection] = filter
+        characters[selectedSection] = nil
+        collectionView.reloadSections([selectedSection])
         return true
     }
     
+    // MARK: - Error Handling
     private var errorAlert: UIAlertController?
     
     private func showErrorAlert(title: String?, message: String?, tryAgainHandler: ((UIAlertAction?) -> Void)?) {
@@ -82,9 +94,19 @@ class CharacterFeedController: CharacterCollectionController {
         }
     }
     
+    // MARK: - Collection View Methods
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        guard kind == UICollectionView.elementKindSectionHeader else { return UICollectionReusableView() }
+        let headerLabel = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderLabelReusableView.identifier, for: indexPath)
+        if let headerLabel = headerLabel as? HeaderLabelReusableView {
+            headerLabel.labelText = headersBySection[indexPath.section]
+        }
+        return headerLabel
+    }
+    
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if let characters = characters, indexPath.item == characters.count - 1 {
-            loadData()
+        if let characters = characters[indexPath.section], indexPath.item == characters.count - 1 {
+            loadData(for: indexPath.section)
         }
     }
 }
@@ -93,7 +115,7 @@ class CharacterFeedController: CharacterCollectionController {
 extension CharacterFeedController: SearchControllerDelegate {
     func searchStarted(with filter: Filter) {
         if setNewFilter(filter) {
-            loadData()
+            loadData(for: selectedSection)
         }
     }
 }
