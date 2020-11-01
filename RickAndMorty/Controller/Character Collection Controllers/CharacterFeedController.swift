@@ -94,16 +94,7 @@ class CharacterFeedController: CharacterCollectionController {
         }
     }
     
-    // MARK: - Collection View Methods
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        guard kind == UICollectionView.elementKindSectionHeader else { return UICollectionReusableView() }
-        let headerLabel = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderLabelReusableView.identifier, for: indexPath)
-        if let headerLabel = headerLabel as? HeaderLabelReusableView {
-            headerLabel.labelText = headersBySection[indexPath.section]
-        }
-        return headerLabel
-    }
-    
+    // MARK: - Collection View Methods    
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if let characters = characters[indexPath.section], indexPath.item == characters.count - 1 {
             loadData(for: indexPath.section)

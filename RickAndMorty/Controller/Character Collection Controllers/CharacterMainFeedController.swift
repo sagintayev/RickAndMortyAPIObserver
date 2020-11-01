@@ -44,7 +44,7 @@ class CharacterMainFeedController: CharacterFeedController {
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(200)), subitem: item, count: 3)
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
-        section.boundarySupplementaryItems = [NSCollectionLayoutBoundarySupplementaryItem(layoutSize: NSCollectionLayoutSize(widthDimension: .estimated(100), heightDimension: .estimated(100)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .topLeading)]
+        section.boundarySupplementaryItems = [NSCollectionLayoutBoundarySupplementaryItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(30)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)]
         section.contentInsets.leading = 15
         return section
     }
@@ -83,5 +83,23 @@ class CharacterMainFeedController: CharacterFeedController {
     // MARK: Collection View Methods
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         filtersBySection.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        guard kind == UICollectionView.elementKindSectionHeader else { return UICollectionReusableView() }
+        let headerLabel = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderLabelReusableView.identifier, for: indexPath)
+        if let headerLabel = headerLabel as? HeaderLabelReusableView {
+            headerLabel.labelText = headersBySection[indexPath.section]
+            headerLabel.openSectionButton.tag = indexPath.section
+            headerLabel.openSectionButton.addTarget(self, action: #selector(expandSection), for: .touchUpInside)
+        }
+        return headerLabel
+    }
+    
+    @objc
+    private func expandSection(_ sender: UIButton) {
+        let characterCollectionController = CharacterCollectionController()
+        characterCollectionController.characters[0] = characters[sender.tag]
+        navigationController?.pushViewController(characterCollectionController, animated: true)
     }
 }
