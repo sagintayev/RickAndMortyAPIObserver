@@ -176,9 +176,11 @@ struct CharacterFilter {
 extension CharacterFilter: Filter {
     var queryString: String {
         guard !filter.isEmpty else { return "" }
+        let spaceSymbol = "%20"
         var query = "?"
         for (parameter, value) in filter {
-            guard let value = value else { continue }
+            guard var value = value else { continue }
+            value = value.replacingOccurrences(of: " ", with: spaceSymbol)
             query.append("\(parameter)=\(value)")
             query.append("&")
         }
