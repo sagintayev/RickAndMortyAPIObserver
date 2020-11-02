@@ -53,15 +53,15 @@ class CharacterFilterView: UIView {
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        commonInint()
+        commonInit()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        commonInint()
+        commonInit()
     }
     
-    private func commonInint() {
+    private func commonInit() {
         Bundle.main.loadNibNamed("CharacterFilterView", owner: self, options: nil)
         addSubview(contentView)
         contentView.frame = self.bounds

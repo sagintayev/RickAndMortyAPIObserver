@@ -52,7 +52,7 @@ class CharacterMainFeedController: CharacterFeedController {
     // MARK: Creating filters
     private var availableGenders: [String: Character.Gender] = ["Boys": .male, "Girls": .female, "Genderless": .genderless, "Unknown gender": .unknown]
     // use only species with reasonable amount of characters
-    private var availableSpecies: [String: Character.Species] = ["Humans": .human, "Aliens": .alien, "Robots": .robot, "Humanoids": .humanoid, "Mythological Creatues": .mythologicalCreature, "Animals": .animal, "Unknown Species": .unknown]
+    private var availableSpecies: [String: Character.Species] = ["Humans": .human, "Aliens": .alien, "Robots": .robot, "Humanoids": .humanoid, "Mythological Creatures": .mythologicalCreature, "Animals": .animal, "Unknown Species": .unknown]
     private var availableStatuses: [String: Character.Status] = ["Alive Characters": .alive, "Dead Characters": .dead, "Unknown if alive": .unknown]
     
     private func getRandomGenderFilter() -> (CharacterFilter, String)? {
