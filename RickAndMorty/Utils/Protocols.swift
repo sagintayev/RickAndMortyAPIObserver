@@ -89,7 +89,13 @@ extension GettableFromAPI {
                 return
             }
             do {
-                let resource = try getDecoder().decode([Resource].self, from: data)
+                var resource: [Resource]
+                if ids.count == 1 {
+                    let singleResource = try getDecoder().decode(Resource.self, from: data)
+                    resource = [singleResource]
+                } else {
+                    resource = try getDecoder().decode([Resource].self, from: data)
+                }
                 completion(.success(resource))
             } catch let error {
                 completion(.failure(error))
