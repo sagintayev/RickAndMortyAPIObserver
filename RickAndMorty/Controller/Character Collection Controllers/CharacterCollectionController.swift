@@ -38,6 +38,11 @@ class CharacterCollectionController: UIViewController {
         setupCharacterCollection()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        collectionView.reloadItems(at: collectionView.indexPathsForVisibleItems)
+    }
+    
     func setupCharacterCollection() {
         collectionView.embedIn(view)
         collectionView.showsVerticalScrollIndicator = false
