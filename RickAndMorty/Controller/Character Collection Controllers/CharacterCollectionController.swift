@@ -81,7 +81,7 @@ extension CharacterCollectionController: UICollectionViewDataSource {
 extension CharacterCollectionController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let selectedCharacter = getCharacterBy(indexPath) else { return }
-        let characterDetailVC = CharacterDetailVC()
+        let characterDetailVC = CharacterDetailController()
         characterDetailVC.character = selectedCharacter
         navigationController?.pushViewController(characterDetailVC, animated: true)
     }

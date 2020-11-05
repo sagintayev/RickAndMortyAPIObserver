@@ -11,7 +11,8 @@
 		F7209288250A1B460011FEAF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7209287250A1B460011FEAF /* SceneDelegate.swift */; };
 		F720928F250A1B4A0011FEAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F720928E250A1B4A0011FEAF /* Assets.xcassets */; };
 		F7209292250A1B4A0011FEAF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7209290250A1B4A0011FEAF /* LaunchScreen.storyboard */; };
-		F74A7250251743A300AFB738 /* CharacterDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74A724F251743A300AFB738 /* CharacterDetailVC.swift */; };
+		F7254D2B254FD7E600F511B5 /* CharacterDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7254D2A254FD7E600F511B5 /* CharacterDetailView.swift */; };
+		F74A7250251743A300AFB738 /* CharacterDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74A724F251743A300AFB738 /* CharacterDetailController.swift */; };
 		F75D5C9C250F392A00115722 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75D5C9B250F392A00115722 /* Character.swift */; };
 		F75D5C9E250F3B1900115722 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75D5C9D250F3B1900115722 /* Location.swift */; };
 		F75D5CA0250F3E1B00115722 /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75D5C9F250F3E1B00115722 /* Episode.swift */; };
@@ -47,7 +48,8 @@
 		F720928E250A1B4A0011FEAF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F7209291250A1B4A0011FEAF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F7209293250A1B4A0011FEAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F74A724F251743A300AFB738 /* CharacterDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailVC.swift; sourceTree = "<group>"; };
+		F7254D2A254FD7E600F511B5 /* CharacterDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailView.swift; sourceTree = "<group>"; };
+		F74A724F251743A300AFB738 /* CharacterDetailController.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = CharacterDetailController.swift; sourceTree = "<group>"; };
 		F75D5C9B250F392A00115722 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		F75D5C9D250F3B1900115722 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		F75D5C9F250F3E1B00115722 /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
@@ -156,7 +158,7 @@
 			children = (
 				F7D016342546CA4500E7D6A7 /* Character Collection Controllers */,
 				F7E76FDC2511F09F00008DD4 /* TabBarController.swift */,
-				F74A724F251743A300AFB738 /* CharacterDetailVC.swift */,
+				F74A724F251743A300AFB738 /* CharacterDetailController.swift */,
 				F77008A5251DC6C900F42950 /* LocationFeedVC.swift */,
 				F784BDCE2522F43D0040941D /* EpisodeTableController.swift */,
 				F78EF8F6253E116F00E7A55C /* ContainerWithSideController.swift */,
@@ -178,6 +180,7 @@
 				F7B8321925404DF800B0C91D /* EpisodeDetailView.swift */,
 				F76AC9D1254369C300D88E9D /* LocationDetailView.swift */,
 				F7E47EB72545A69900D5FE74 /* HeaderLabelReusableView.swift */,
+				F7254D2A254FD7E600F511B5 /* CharacterDetailView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -254,13 +257,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				F7B83220254096EB00B0C91D /* EpisodeDetailController.swift in Sources */,
-				F74A7250251743A300AFB738 /* CharacterDetailVC.swift in Sources */,
+				F74A7250251743A300AFB738 /* CharacterDetailController.swift in Sources */,
 				F76AC9D2254369C300D88E9D /* LocationDetailView.swift in Sources */,
 				F75D5CA0250F3E1B00115722 /* Episode.swift in Sources */,
 				F77008A8251F1F3B00F42950 /* LocationTableCell.swift in Sources */,
 				F7E47EB82545A69900D5FE74 /* HeaderLabelReusableView.swift in Sources */,
 				F7209286250A1B460011FEAF /* AppDelegate.swift in Sources */,
 				F78EF8F7253E116F00E7A55C /* ContainerWithSideController.swift in Sources */,
+				F7254D2B254FD7E600F511B5 /* CharacterDetailView.swift in Sources */,
 				F7E76FE22512117600008DD4 /* CharacterCell.swift in Sources */,
 				F784BDCF2522F43D0040941D /* EpisodeTableController.swift in Sources */,
 				F7D016402546CE5500E7D6A7 /* CharacterMainFeedController.swift in Sources */,
