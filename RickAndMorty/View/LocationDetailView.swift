@@ -13,19 +13,16 @@ class LocationDetailView: UIView {
     var name: String? {
         didSet {
             nameLabel.text = name
-            setNeedsLayout()
         }
     }
     var type: String? {
         didSet {
             typeLabel.text = type
-            setNeedsLayout()
         }
     }
     var dimension: String? {
         didSet {
             dimensionLabel.text = dimension
-            setNeedsLayout()
         }
     }
     
