@@ -30,7 +30,7 @@ class TabBarController: UITabBarController {
     }()
     
     var episodesVC: UINavigationController = {
-        let episodesVC = EpisodeFeedVC()
+        let episodesVC = EpisodeTableController()
         episodesVC.title = "Episodes"
         let navController = UINavigationController(rootViewController: episodesVC)
         navController.tabBarItem = UITabBarItem(title: "Episodes", image: nil, selectedImage: nil)
