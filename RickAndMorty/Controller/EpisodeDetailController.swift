@@ -45,6 +45,7 @@ class EpisodeDetailController: CharacterCollectionController {
             case .success(let characters):
                 self.characters[0] = characters
                 self.collectionView.reloadData()
+                self.isLoading = false
             case .failure(let error):
                 print(error)
             }
@@ -52,13 +53,19 @@ class EpisodeDetailController: CharacterCollectionController {
     }
     
     // MARK: - Collection View Data Source
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        guard kind == UICollectionView.elementKindSectionHeader else { return UICollectionReusableView() }
-        let episodeHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: EpisodeDetailCollectionReusableView.identifier, for: indexPath)
-        if let episodeHeader = episodeHeader as? EpisodeDetailCollectionReusableView {
-            episodeHeader.view = episodeView
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        var reusableView: UICollectionReusableView
+        if kind == UICollectionView.elementKindSectionFooter {
+            reusableView = super.collectionView(collectionView, viewForSupplementaryElementOfKind: kind, at: indexPath)
+        } else if kind == UICollectionView.elementKindSectionHeader {
+            reusableView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: EpisodeDetailCollectionReusableView.identifier, for: indexPath)
+            if let reusableView = reusableView as? EpisodeDetailCollectionReusableView {
+                reusableView.view = episodeView
+            }
+        } else {
+            reusableView = UICollectionReusableView()
         }
-        return episodeHeader
+        return reusableView
     }
     
     func collectionView(_ collectionView: UICollectionView,

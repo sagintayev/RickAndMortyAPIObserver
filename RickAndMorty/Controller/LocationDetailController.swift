@@ -45,6 +45,7 @@ class LocationDetailController: CharacterCollectionController {
             case .success(let characters):
                 self.characters[0] = characters
                 self.collectionView.reloadData()
+                self.isLoading = false
             case .failure(let error):
                 print(error)
             }
@@ -52,13 +53,19 @@ class LocationDetailController: CharacterCollectionController {
     }
     
     // MARK: - Collection View Data Source
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        guard kind == UICollectionView.elementKindSectionHeader else { return UICollectionReusableView() }
-        let locationHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: LocationDetailCollectionReusableView.identifier, for: indexPath)
-        if let locationHeader = locationHeader as? LocationDetailCollectionReusableView {
-            locationHeader.view = locationView
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        var reusableView: UICollectionReusableView
+        if kind == UICollectionView.elementKindSectionFooter {
+            reusableView = super.collectionView(collectionView, viewForSupplementaryElementOfKind: kind, at: indexPath)
+        } else if kind == UICollectionView.elementKindSectionHeader {
+            reusableView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: LocationDetailCollectionReusableView.identifier, for: indexPath)
+            if let reusableView = reusableView as? LocationDetailCollectionReusableView {
+                reusableView.view = locationView
+            }
+        } else {
+            reusableView = UICollectionReusableView()
         }
-        return locationHeader
+        return reusableView
     }
     
     func collectionView(_ collectionView: UICollectionView,

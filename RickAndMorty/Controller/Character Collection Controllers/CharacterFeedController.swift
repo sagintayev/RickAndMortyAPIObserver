@@ -48,7 +48,11 @@ class CharacterFeedController: CharacterCollectionController {
             case .success(let characters):
                 self.updateCollectionView(with: characters.results, for: section)
                 filter.page += 1
-                filter.available = filter.page <= characters.info.pages
+                let isMoreDataExists = filter.page <= characters.info.pages
+                filter.available = isMoreDataExists
+                if !isMoreDataExists {
+                    self.isLoading = false
+                }
             case .failure(let error):
                 filter.available = true
                 self.showErrorAlert(title: "Couldn't load data", message: error.localizedDescription) { (_) in
@@ -77,6 +81,7 @@ class CharacterFeedController: CharacterCollectionController {
         filtersBySection[selectedSection] = filter
         characters[selectedSection] = nil
         collectionView.reloadSections([selectedSection])
+        isLoading = true
         return true
     }
     

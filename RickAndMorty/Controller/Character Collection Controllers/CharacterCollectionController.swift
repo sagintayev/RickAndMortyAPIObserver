@@ -13,6 +13,9 @@ class CharacterCollectionController: UIViewController {
     let spacingBetweenItems: CGFloat = 10
     let itemsPerRow: CGFloat = 3
     var characters = [Int: [Character]]()
+    var isLoading = true {
+        didSet { self.collectionView.collectionViewLayout.invalidateLayout() }
+    }
     
     lazy var collectionView: UICollectionView = {
         let layout = getLayout()
@@ -49,6 +52,7 @@ class CharacterCollectionController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(CharacterCell.self, forCellWithReuseIdentifier: CharacterCell.identifier)
+        collectionView.register(LoadingCollectionFooter.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: LoadingCollectionFooter.identifier)
     }
     
     // MARK: - Private methods
@@ -79,7 +83,24 @@ extension CharacterCollectionController: UICollectionViewDataSource {
         }
         return cell
     }
-
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        var reusableView: UICollectionReusableView
+        if kind == UICollectionView.elementKindSectionFooter {
+            reusableView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: LoadingCollectionFooter.identifier, for: indexPath)
+        } else {
+            reusableView = UICollectionReusableView()
+        }
+        return reusableView
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        if isLoading {
+            return CGSize(width: 1, height: 150)
+        } else {
+            return CGSize(width: 0, height: 0)
+        }
+    }
 }
 
 // MARK: - Collection View Delegate
