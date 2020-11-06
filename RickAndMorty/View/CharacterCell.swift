@@ -68,6 +68,7 @@ class CharacterCell: UICollectionViewCell {
         label.font = UIFont(name: "MarkerFelt-Thin", size: UIFont.systemFontSize)
         label.numberOfLines = 0
         label.textAlignment = .center
+        label.text = "placeholder text..." // to help collection view calculate cell height
         return label
     }()
     
