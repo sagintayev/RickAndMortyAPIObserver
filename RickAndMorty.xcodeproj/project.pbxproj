@@ -34,7 +34,6 @@
 		F7C2C99E252B26B300BD7E79 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C2C99D252B26B300BD7E79 /* Constants.swift */; };
 		F7D016362546CA7A00E7D6A7 /* CharacterCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D016352546CA7A00E7D6A7 /* CharacterCollectionController.swift */; };
 		F7D016402546CE5500E7D6A7 /* CharacterMainFeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7D0163F2546CE5500E7D6A7 /* CharacterMainFeedController.swift */; };
-		F7DE4FE3251B5BD9000DEF9D /* LabelsStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7DE4FE2251B5BD9000DEF9D /* LabelsStack.swift */; };
 		F7E36B4F25360682003112F1 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E36B4E25360682003112F1 /* Protocols.swift */; };
 		F7E47EB82545A69900D5FE74 /* HeaderLabelReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E47EB72545A69900D5FE74 /* HeaderLabelReusableView.swift */; };
 		F7E76FDD2511F09F00008DD4 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E76FDC2511F09F00008DD4 /* TabBarController.swift */; };
@@ -72,7 +71,6 @@
 		F7C2C99D252B26B300BD7E79 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F7D016352546CA7A00E7D6A7 /* CharacterCollectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCollectionController.swift; sourceTree = "<group>"; };
 		F7D0163F2546CE5500E7D6A7 /* CharacterMainFeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterMainFeedController.swift; sourceTree = "<group>"; };
-		F7DE4FE2251B5BD9000DEF9D /* LabelsStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelsStack.swift; sourceTree = "<group>"; };
 		F7E36B4E25360682003112F1 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		F7E47EB72545A69900D5FE74 /* HeaderLabelReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderLabelReusableView.swift; sourceTree = "<group>"; };
 		F7E76FDC2511F09F00008DD4 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -175,7 +173,6 @@
 			isa = PBXGroup;
 			children = (
 				F7E76FE12512117600008DD4 /* CharacterCell.swift */,
-				F7DE4FE2251B5BD9000DEF9D /* LabelsStack.swift */,
 				F77008A7251F1F3B00F42950 /* LocationTableCell.swift */,
 				F78EF8EF253E0DB000E7A55C /* CharacterFilterView.swift */,
 				F78EF8F3253E0E0100E7A55C /* CharacterFilterView.xib */,
@@ -279,7 +276,6 @@
 				F7E36B4F25360682003112F1 /* Protocols.swift in Sources */,
 				F7E76FDD2511F09F00008DD4 /* TabBarController.swift in Sources */,
 				F75D5C9C250F392A00115722 /* Character.swift in Sources */,
-				F7DE4FE3251B5BD9000DEF9D /* LabelsStack.swift in Sources */,
 				F75D5CA2250F64FB00115722 /* Extensions.swift in Sources */,
 				F76AC9D52543783200D88E9D /* LocationDetailController.swift in Sources */,
 				F7E76FDF25120E1400008DD4 /* CharacterFeedController.swift in Sources */,
