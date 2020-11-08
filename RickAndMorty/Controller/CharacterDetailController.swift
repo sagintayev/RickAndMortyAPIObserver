@@ -76,6 +76,7 @@ class CharacterDetailController: EpisodeTableController {
             switch result {
             case .success(let episodes):
                 self.episodes = episodes
+                self.isShowingLoadingFooter = false
                 self.tableView.reloadData()
             case .failure(let error):
                 self.showErrorController(title: "Couldn't load episodes", message: error.localizedDescription) { _ in self.updateTableView()

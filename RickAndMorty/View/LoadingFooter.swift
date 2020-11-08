@@ -28,3 +28,25 @@ class LoadingCollectionFooter: UICollectionReusableView {
         commonInit()
     }
 }
+
+
+class LoadingTableFooter: UITableViewHeaderFooterView {
+    static let identifier = "loading-table-footer"
+    private var activityIndicator = UIActivityIndicatorView()
+    
+    private func commonInit() {
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.startAnimating()
+        activityIndicator.embedIn(self)
+    }
+    
+    override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
+        commonInit()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        commonInit()
+    }
+}

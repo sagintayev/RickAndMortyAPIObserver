@@ -13,12 +13,16 @@ class EpisodeTableController: UIViewController {
     var episodesDividedBySeasons: EpisodesDividedBySeasons?
     var episodes: [Episode]?
     var isLoadingAllEpisodes = true
+    var isShowingLoadingFooter = true {
+        didSet {
+            tableView.tableFooterView?.isHidden = isShowingLoadingFooter ? false : true
+        }
+    }
         
     // MARK: View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        activateConstraints()
         if isLoadingAllEpisodes {
             loadData()
         }
@@ -40,6 +44,7 @@ class EpisodeTableController: UIViewController {
             case .success(let episodes):
                 self.episodesDividedBySeasons = EpisodesDividedBySeasons(episodes)
                 self.episodes = self.episodesDividedBySeasons == nil ? episodes : nil
+                self.isShowingLoadingFooter = false
                 self.tableView.reloadData()
             case .failure(let error):
                 self.showErrorController(title: "Can't load data", message: error.localizedDescription, tryAgainHandler: self.loadData)
@@ -53,26 +58,11 @@ class EpisodeTableController: UIViewController {
     private var errorController: UIAlertController?
     
     func setupTableView() {
-        view.addSubview(tableView)
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: tableCellIdentifier)
+        tableView.embedIn(view)
         tableView.delegate = self
         tableView.dataSource = self
-    }
-    
-    private func turnOffAutoresizingMask() {
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-    }
-    
-    private func activateConstraints() {
-        turnOffAutoresizingMask()
-        
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
-        
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: tableCellIdentifier)
+        tableView.tableFooterView = LoadingTableFooter()
     }
     
     func showErrorController(title: String?, message: String?, tryAgainHandler: ((UIAlertAction?) -> Void)?) {
