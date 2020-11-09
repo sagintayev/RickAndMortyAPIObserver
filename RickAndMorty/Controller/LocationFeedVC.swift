@@ -12,6 +12,11 @@ class LocationFeedVC: UIViewController {
     
     // MARK: - Properties
     var locations: [Location]?
+    var isShowingLoadingFooter = true {
+        didSet {
+            tableView.tableFooterView?.isHidden = isShowingLoadingFooter ? false : true
+        }
+    }
     
     // MARK: - View Life Cycle
     override func loadView() {
@@ -22,7 +27,6 @@ class LocationFeedVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLocationTable()
-        activateConstraints()
         loadData()
     }
     
@@ -41,7 +45,8 @@ class LocationFeedVC: UIViewController {
             switch result {
             case .success(let locations):
                 self.locations = locations
-                self.locationTable.reloadData()
+                self.isShowingLoadingFooter = false
+                self.tableView.reloadData()
             case .failure(let error):
                 self.showErrorController(title: "Can't load data", message: error.localizedDescription, tryAgainHandler: self.loadData)
             }
@@ -49,29 +54,21 @@ class LocationFeedVC: UIViewController {
     }
     
     // MARK: - UI Stuff
-    private var locationTable: UITableView = {
-        let locationTable = UITableView(frame: .zero)
-        locationTable.register(LocationTableCell.self, forCellReuseIdentifier: LocationTableCell.identifier)
-        locationTable.translatesAutoresizingMaskIntoConstraints = false
-        locationTable.separatorColor = .clear
-        locationTable.backgroundColor = UIConstants.mainBackgroundColor
-        return locationTable
+    private var tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.separatorColor = .clear
+        tableView.backgroundColor = UIConstants.mainBackgroundColor
+        return tableView
     }()
     
     private var errorController: UIAlertController?
     
     private func setupLocationTable() {
-        locationTable.dataSource = self
-        locationTable.delegate = self
-        view.addSubview(locationTable)
-    }
-    
-    private func activateConstraints() {
-        let views = ["locationTable": locationTable]
-        NSLayoutConstraint.activate(
-        NSLayoutConstraint.constraints(withVisualFormat: "H:|[locationTable]|", options: [], metrics: nil, views: views)
-        + NSLayoutConstraint.constraints(withVisualFormat: "V:|[locationTable]|", options: [], metrics: nil, views: views)
-        )
+        tableView.embedIn(view)
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(LocationTableCell.self, forCellReuseIdentifier: LocationTableCell.identifier)
+        tableView.tableFooterView = LoadingTableFooter()
     }
     
     private func showErrorController(title: String?, message: String?, tryAgainHandler: ((UIAlertAction?) -> Void)?) {

@@ -10,7 +10,7 @@ import UIKit
 
 class LoadingCollectionFooter: UICollectionReusableView {
     static let identifier = "loading-collection-footer"
-    private var activityIndicator = UIActivityIndicatorView()
+    private var activityIndicator = UIActivityIndicatorView(style: .large)
     
     private func commonInit() {
         activityIndicator.hidesWhenStopped = true
@@ -32,7 +32,7 @@ class LoadingCollectionFooter: UICollectionReusableView {
 
 class LoadingTableFooter: UITableViewHeaderFooterView {
     static let identifier = "loading-table-footer"
-    private var activityIndicator = UIActivityIndicatorView()
+    private var activityIndicator = UIActivityIndicatorView(style: .large)
     
     private func commonInit() {
         activityIndicator.hidesWhenStopped = true
