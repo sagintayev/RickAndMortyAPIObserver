@@ -63,9 +63,15 @@ struct Character: Codable {
     let image: URL
     let episodes: [URL]
     
+    private static var imageCache = ImageCache()
+    
     func getImage(completion: @escaping (Data) -> Void) {
+        if let imageData = Character.imageCache[image] {
+            completion(imageData as Data)
+        }
         Character.networkHandler.getByURL(image) { (data, error) in
             if let data = data {
+                Character.imageCache[image] = data
                 completion(data)
             }
         }
