@@ -10,6 +10,8 @@ import UIKit
 
 class CharacterDetailView: UIView {
     // MARK: - Properties
+    var delegate: CharacterDetailViewDelegate?
+    
     var image: UIImage? {
         didSet { imageView.image = image }
     }
@@ -32,10 +34,18 @@ class CharacterDetailView: UIView {
         didSet { genderLabel.text = gender }
     }
     var origin: String? {
-        didSet { originLabel.text = origin }
+        didSet {
+            let attributes = getAttributesForDetailDisclosureButton()
+            let attributedOrigin = NSAttributedString(string: origin ?? "", attributes: attributes)
+            originButton.setAttributedTitle(attributedOrigin, for: .normal)
+        }
     }
     var currentLocation: String? {
-        didSet { currentLocationLabel.text = currentLocation }
+        didSet {
+            let attributes = getAttributesForDetailDisclosureButton()
+            let attributedOrigin = NSAttributedString(string: origin ?? "", attributes: attributes)
+            currentLocationButton.setAttributedTitle(attributedOrigin, for: .normal)
+        }
     }
     
     // MARK: - UI components
@@ -78,11 +88,7 @@ class CharacterDetailView: UIView {
         label.font = .systemFont(ofSize: 22)
         return label
     }()
-    private var originLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 22)
-        return label
-    }()
+    private lazy var originButton: UIButton = getDetailDisclosureButton()
     private var currentLocationTitleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .systemGray4
@@ -90,11 +96,7 @@ class CharacterDetailView: UIView {
         label.font = .systemFont(ofSize: 22)
         return label
     }()
-    private var currentLocationLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 22)
-        return label
-    }()
+    private lazy var currentLocationButton: UIButton = getDetailDisclosureButton()
     private var episodesTitleLabel: UILabel = {
         let label = UILabel()
         label.text = "Seen in the next episodes:"
@@ -113,6 +115,29 @@ class CharacterDetailView: UIView {
         } else if let type = type {
             speciesTypeLabel.text = type
         }
+    }
+    
+    private func getDetailDisclosureButton() -> UIButton {
+        let button = UIButton(type: .detailDisclosure)
+        button.contentHorizontalAlignment = .left
+        button.tintColor = .black
+        button.titleEdgeInsets.left = 10
+        button.addTarget(self, action: #selector(originButtonTapped), for: .touchUpInside)
+        return button
+    }
+    private func getAttributesForDetailDisclosureButton() -> [NSAttributedString.Key: Any] {
+        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 22)]
+        return attributes
+    }
+    
+    @objc
+    private func originButtonTapped() {
+        delegate?.originButtonTapped()
+    }
+    
+    @objc
+    private func currentLocationButtonTapped() {
+        delegate?.currentLocationButtonTapped()
     }
     
     override func layoutSubviews() {
@@ -139,7 +164,7 @@ class CharacterDetailView: UIView {
     }
     
     private func addSubviews() {
-        for view in [imageView, nameLabel, statusLabel, statusIndicator, speciesTypeLabel, genderLabel, originTitleLabel, originLabel, currentLocationTitleLabel, currentLocationLabel, episodesTitleLabel] {
+        for view in [imageView, nameLabel, statusLabel, statusIndicator, speciesTypeLabel, genderLabel, originTitleLabel, originButton, currentLocationTitleLabel, currentLocationButton, episodesTitleLabel] {
             addSubview(view)
         }
     }
@@ -151,12 +176,11 @@ class CharacterDetailView: UIView {
     }
     
     private func setPriorities() {
-        nameLabel.setContentHuggingPriority(.defaultLow-2, for: .vertical)
+        nameLabel.setContentHuggingPriority(.defaultLow-1, for: .vertical)
         statusLabel.setContentHuggingPriority(.defaultLow+1, for: .vertical)
     }
     
     private func activateConstraints() {
-        //let safeArea = safeAreaLayoutGuide
         let verticalOffset: CGFloat = 15
         let horizontalOffset: CGFloat = 20
         
@@ -196,22 +220,22 @@ class CharacterDetailView: UIView {
             originTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -horizontalOffset)
         ]
         let originLabelConstraints = [
-            originLabel.topAnchor.constraint(equalTo: originTitleLabel.bottomAnchor, constant: verticalOffset/2),
-            originLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: horizontalOffset),
-            originLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -horizontalOffset)
+            originButton.topAnchor.constraint(equalTo: originTitleLabel.bottomAnchor, constant: verticalOffset/2),
+            originButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: horizontalOffset),
+            originButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -horizontalOffset)
         ]
         let currentLocationTitleLabelConstraints = [
-            currentLocationTitleLabel.topAnchor.constraint(equalTo: originLabel.bottomAnchor, constant: verticalOffset),
+            currentLocationTitleLabel.topAnchor.constraint(equalTo: originButton.bottomAnchor, constant: verticalOffset),
             currentLocationTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: horizontalOffset),
             currentLocationTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -horizontalOffset)
         ]
         let currentLocationLabelConstraints = [
-            currentLocationLabel.topAnchor.constraint(equalTo: currentLocationTitleLabel.bottomAnchor, constant: verticalOffset/2),
-            currentLocationLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: horizontalOffset),
-            currentLocationLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -horizontalOffset)
+            currentLocationButton.topAnchor.constraint(equalTo: currentLocationTitleLabel.bottomAnchor, constant: verticalOffset/2),
+            currentLocationButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: horizontalOffset),
+            currentLocationButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -horizontalOffset)
         ]
         let episodesTitleLabelConstraints = [
-            episodesTitleLabel.topAnchor.constraint(equalTo: currentLocationLabel.bottomAnchor, constant: verticalOffset*1.5),
+            episodesTitleLabel.topAnchor.constraint(equalTo: currentLocationButton.bottomAnchor, constant: verticalOffset*1.5),
             episodesTitleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             episodesTitleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -verticalOffset)
         ]

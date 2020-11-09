@@ -155,3 +155,9 @@ extension GettableFromAPI {
         return decoder
     }
 }
+
+// MARK: - CharacterDetailViewDelegate
+protocol CharacterDetailViewDelegate {
+    func originButtonTapped()
+    func currentLocationButtonTapped()
+}

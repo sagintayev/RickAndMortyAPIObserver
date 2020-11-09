@@ -59,6 +59,7 @@ class CharacterDetailController: EpisodeTableController {
     override func viewDidLoad() {
         isLoadingAllEpisodes = false
         super.viewDidLoad()
+        characterDetailView.delegate = self
     }
     
     // MARK: Table View Methods
@@ -91,5 +92,33 @@ class CharacterDetailController: EpisodeTableController {
             header.view = characterDetailView
         }
         return header
+    }
+}
+
+extension CharacterDetailController: CharacterDetailViewDelegate {
+    func currentLocationButtonTapped() {
+        guard let character = character else { return }
+        showLocationDetailController(for: character.location)
+    }
+    
+    func originButtonTapped() {
+        guard let character = character else { return }
+        showLocationDetailController(for: character.origin)
+    }
+    
+    private func showLocationDetailController(for location: Character.LocationShortVersion) {
+        guard let locationURL = location.url else { return }
+        guard let locationID = Location.getIDFromUrl(locationURL) else { return }
+        let locationDetailController = LocationDetailController()
+        Location.getByIDs([locationID]) { (result) in
+            switch result {
+            case .success(let locations):
+                let origin = locations.first
+                locationDetailController.location = origin
+            case .failure(let error):
+                print(error)
+            }
+        }
+        navigationController?.pushViewController(locationDetailController, animated: true)
     }
 }
