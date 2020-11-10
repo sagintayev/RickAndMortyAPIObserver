@@ -13,21 +13,23 @@ class CharacterFeedController: CharacterCollectionController {
     var headersBySection = [Int: String]()
     var filtersBySection = [Int: CharacterFilter]()
     let selectedSection = 0
+    var showLoadingController = true
+    private var loadingController: LoadingIndicatorController!
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        if showLoadingController {
+            setupLoadingController()
+        }
         createFilters()
         loadData()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if let errorAlert = errorAlert {
-            present(errorAlert, animated: true) {
-                self.errorAlert = nil
-            }
-        }
+    private func setupLoadingController() {
+        loadingController = LoadingIndicatorController()
+        addChildController(loadingController)
+        loadingController.delegate = self
     }
     
     func createFilters() {
@@ -38,7 +40,7 @@ class CharacterFeedController: CharacterCollectionController {
         loadData(for: selectedSection)
     }
     
-    // MARK: - Data Loading
+    // MARK: - Methods
     func loadData(for section: Int) {
         guard var filter = filtersBySection[section] else { return }
         guard filter.available == true else { return }
@@ -53,10 +55,13 @@ class CharacterFeedController: CharacterCollectionController {
                 if !isMoreDataExists {
                     self.isLoading = false
                 }
+                if self.showLoadingController {
+                    self.loadingController.view.isHidden = true
+                }
             case .failure(let error):
                 filter.available = true
-                self.showErrorAlert(title: "Couldn't load data", message: error.localizedDescription) { (_) in
-                    self.loadData(for: section)
+                if self.showLoadingController {
+                    self.loadingController.showError(withTitle: "Couldn't load characters", andMessage: error.localizedDescription)
                 }
             }
             self.filtersBySection[section] = filter
@@ -85,20 +90,6 @@ class CharacterFeedController: CharacterCollectionController {
         return true
     }
     
-    // MARK: - Error Handling
-    private var errorAlert: UIAlertController?
-    
-    private func showErrorAlert(title: String?, message: String?, tryAgainHandler: ((UIAlertAction?) -> Void)?) {
-        let errorController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        errorController.addAction(UIAlertAction(title: "Try again", style: .default, handler: tryAgainHandler))
-        errorController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        if viewIfLoaded?.window != nil {
-            present(errorController, animated: true)
-        } else {
-            self.errorAlert = errorController
-        }
-    }
-    
     // MARK: - Collection View Methods    
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if let characters = characters[indexPath.section], indexPath.item == characters.count - 1 {
@@ -111,7 +102,17 @@ class CharacterFeedController: CharacterCollectionController {
 extension CharacterFeedController: SearchControllerDelegate {
     func searchStarted(with filter: Filter) {
         if setNewFilter(filter) {
+            if showLoadingController {
+                loadingController.view.isHidden = false
+            }
             loadData(for: selectedSection)
         }
+    }
+}
+
+// MARK: - Loading Indicator Controller Delegate
+extension CharacterFeedController: LoadingIndicatorControllerDelegate {
+    func tryAgainButtonTapped() {
+        loadData()
     }
 }
