@@ -69,3 +69,17 @@ extension UIView {
         NSLayoutConstraint.activate(constraints)
     }
 }
+
+extension UIViewController {
+    func addChildController(_ controller: UIViewController) {
+        addChild(controller)
+        view.addSubview(controller.view)
+        controller.didMove(toParent: self)
+    }
+    
+    func removeFromParentController() {
+        removeFromParent()
+        view.removeFromSuperview()
+        didMove(toParent: nil)
+    }
+}
