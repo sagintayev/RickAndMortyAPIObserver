@@ -161,3 +161,8 @@ protocol CharacterDetailViewDelegate {
     func originButtonTapped()
     func currentLocationButtonTapped()
 }
+
+// MARK: - LoadingIndicatorControllerDelegate
+protocol LoadingIndicatorControllerDelegate {
+    func tryAgainButtonTapped()
+}

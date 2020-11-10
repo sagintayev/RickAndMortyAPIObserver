@@ -14,6 +14,7 @@
 		F7254D2B254FD7E600F511B5 /* CharacterDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7254D2A254FD7E600F511B5 /* CharacterDetailView.swift */; };
 		F74A7250251743A300AFB738 /* CharacterDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74A724F251743A300AFB738 /* CharacterDetailController.swift */; };
 		F751A4622559B47900F18631 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = F751A4612559B47900F18631 /* ImageCache.swift */; };
+		F751A4652559C16700F18631 /* LoadingIndicatorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F751A4642559C16700F18631 /* LoadingIndicatorController.swift */; };
 		F75D5C9C250F392A00115722 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75D5C9B250F392A00115722 /* Character.swift */; };
 		F75D5C9E250F3B1900115722 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75D5C9D250F3B1900115722 /* Location.swift */; };
 		F75D5CA0250F3E1B00115722 /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75D5C9F250F3E1B00115722 /* Episode.swift */; };
@@ -52,6 +53,7 @@
 		F7254D2A254FD7E600F511B5 /* CharacterDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailView.swift; sourceTree = "<group>"; };
 		F74A724F251743A300AFB738 /* CharacterDetailController.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = CharacterDetailController.swift; sourceTree = "<group>"; };
 		F751A4612559B47900F18631 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		F751A4642559C16700F18631 /* LoadingIndicatorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicatorController.swift; sourceTree = "<group>"; };
 		F75D5C9B250F392A00115722 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		F75D5C9D250F3B1900115722 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		F75D5C9F250F3E1B00115722 /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				F78EF8F9253E13FA00E7A55C /* CharacterSearchController.swift */,
 				F7B8321F254096EB00B0C91D /* EpisodeDetailController.swift */,
 				F76AC9D42543783200D88E9D /* LocationDetailController.swift */,
+				F751A4642559C16700F18631 /* LoadingIndicatorController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 				F75D5CA0250F3E1B00115722 /* Episode.swift in Sources */,
 				F77008A8251F1F3B00F42950 /* LocationTableCell.swift in Sources */,
 				F7E47EB82545A69900D5FE74 /* HeaderLabelReusableView.swift in Sources */,
+				F751A4652559C16700F18631 /* LoadingIndicatorController.swift in Sources */,
 				F7209286250A1B460011FEAF /* AppDelegate.swift in Sources */,
 				F78EF8F7253E116F00E7A55C /* ContainerWithSideController.swift in Sources */,
 				F7254D2B254FD7E600F511B5 /* CharacterDetailView.swift in Sources */,
