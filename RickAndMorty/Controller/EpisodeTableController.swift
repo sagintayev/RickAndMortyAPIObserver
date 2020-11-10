@@ -18,44 +18,25 @@ class EpisodeTableController: UIViewController {
             tableView.tableFooterView?.isHidden = isShowingLoadingFooter ? false : true
         }
     }
+    
+    var tableView = UITableView(frame: .zero, style: .insetGrouped)
+    private let tableCellIdentifier = "cell"
+    private var loadingController = LoadingIndicatorController()
         
-    // MARK: View Life Cycle
+    // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         if isLoadingAllEpisodes {
+            setupLoadingController()
             loadData()
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if let errorController = errorController {
-            present(errorController, animated: true) {
-                self.errorController = nil
-            }
-        }
+    private func setupLoadingController() {
+        addChildController(loadingController)
+        loadingController.delegate = self
     }
-    
-    // MARK: - Private methods
-    private func loadData(_ action: UIAlertAction? = nil) {
-        Episode.getAll { (result) in
-            switch result {
-            case .success(let episodes):
-                self.episodesDividedBySeasons = EpisodesDividedBySeasons(episodes)
-                self.episodes = self.episodesDividedBySeasons == nil ? episodes : nil
-                self.isShowingLoadingFooter = false
-                self.tableView.reloadData()
-            case .failure(let error):
-                self.showErrorController(title: "Can't load data", message: error.localizedDescription, tryAgainHandler: self.loadData)
-            }
-        }
-    }
-    
-    // MARK: UI Stuff
-    var tableView = UITableView(frame: .zero, style: .insetGrouped)
-    private let tableCellIdentifier = "cell"
-    private var errorController: UIAlertController?
     
     func setupTableView() {
         tableView.embedIn(view)
@@ -65,19 +46,23 @@ class EpisodeTableController: UIViewController {
         tableView.tableFooterView = LoadingTableFooter()
     }
     
-    func showErrorController(title: String?, message: String?, tryAgainHandler: ((UIAlertAction?) -> Void)?) {
-        let errorController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        errorController.addAction(UIAlertAction(title: "Try again", style: .default, handler: tryAgainHandler))
-        errorController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        if viewIfLoaded?.window != nil {
-            present(errorController, animated: true)
-        } else {
-            self.errorController = errorController
+    private func loadData(_ action: UIAlertAction? = nil) {
+        Episode.getAll { (result) in
+            switch result {
+            case .success(let episodes):
+                self.episodesDividedBySeasons = EpisodesDividedBySeasons(episodes)
+                self.episodes = self.episodesDividedBySeasons == nil ? episodes : nil
+                self.isShowingLoadingFooter = false
+                self.tableView.reloadData()
+                self.loadingController.removeFromParentController()
+            case .failure(let error):
+                self.loadingController.showError(withTitle: "Couldn't load episodes", andMessage: error.localizedDescription)
+            }
         }
     }
 }
 
-// MARK: - Data source
+// MARK: - Table View Data source
 extension EpisodeTableController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return episodesDividedBySeasons?.seasons ?? 1
@@ -114,7 +99,7 @@ extension EpisodeTableController: UITableViewDataSource {
     }
 }
 
-// MARK: - Delegate
+// MARK: - Table View Delegate
 extension EpisodeTableController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var episode: Episode!
@@ -131,5 +116,12 @@ extension EpisodeTableController: UITableViewDelegate {
         let episodeController = EpisodeDetailController()
         episodeController.episode = episode
         navigationController?.pushViewController(episodeController, animated: true)
+    }
+}
+
+// MARK: - Loading Indicator Controller Delegate
+extension EpisodeTableController: LoadingIndicatorControllerDelegate {
+    func tryAgainButtonTapped() {
+        loadData()
     }
 }

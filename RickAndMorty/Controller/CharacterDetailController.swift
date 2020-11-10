@@ -80,8 +80,7 @@ class CharacterDetailController: EpisodeTableController {
                 self.isShowingLoadingFooter = false
                 self.tableView.reloadData()
             case .failure(let error):
-                self.showErrorController(title: "Couldn't load episodes", message: error.localizedDescription) { _ in self.updateTableView()
-                }
+                print(error)
             }
         }
     }
