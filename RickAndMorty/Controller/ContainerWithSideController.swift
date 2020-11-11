@@ -63,13 +63,6 @@ class ContainerWithSideController: UIViewController {
         isSideControllerShown.toggle()
     }
     
-    @objc
-    private func hideSideController() {
-        guard isSideControllerShown == true else { return }
-        print("hide")
-        toggleSideController()
-    }
-    
     // MARK: - Init
     init(contentController: UIViewController, sideController: UIViewController&Toggleable) {
         super.init(nibName: nil, bundle: nil)
@@ -89,14 +82,11 @@ class ContainerWithSideController: UIViewController {
         setupNavItem()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        NotificationCenter.default.addObserver(self, selector: #selector(hideSideController), name: UIDevice.orientationDidChangeNotification, object: nil)
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        NotificationCenter.default.removeObserver(self)
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if self.isSideControllerShown {
+            self.sideController.view.frame.origin.x = self.view.frame.width * (1-self.sideControllerWidthMiltiplier)
+        }
     }
     
     // MARK: Navigation Item
