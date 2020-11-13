@@ -10,7 +10,7 @@ import UIKit
 
 class CharacterDetailView: UIView {
     // MARK: - Properties
-    var delegate: CharacterDetailViewDelegate?
+    weak var delegate: CharacterDetailViewDelegate?
     
     var image: UIImage? {
         didSet { imageView.image = image }

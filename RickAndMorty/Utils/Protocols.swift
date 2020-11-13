@@ -27,12 +27,12 @@ protocol Filter {
 }
 
 // MARK: - SearchControllerDelegate
-protocol SearchControllerDelegate {
+protocol SearchControllerDelegate: class {
     func searchStarted(with filter: Filter)
 }
 
 // MARK: - CharacterFilterViewDelegate
-protocol CharacterFilterViewDelegate {
+protocol CharacterFilterViewDelegate: class {
     func nameTextFieldValueChanged(_ name: String?)
     func speciesTextFieldValueChanged(_ species: String?)
     func typeTextFieldValueChanged(_ type: String?)
@@ -157,12 +157,12 @@ extension GettableFromAPI {
 }
 
 // MARK: - CharacterDetailViewDelegate
-protocol CharacterDetailViewDelegate {
+protocol CharacterDetailViewDelegate: class {
     func originButtonTapped()
     func currentLocationButtonTapped()
 }
 
 // MARK: - LoadingIndicatorControllerDelegate
-protocol LoadingIndicatorControllerDelegate {
+protocol LoadingIndicatorControllerDelegate: class {
     func tryAgainButtonTapped()
 }

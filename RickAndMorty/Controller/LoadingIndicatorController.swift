@@ -11,7 +11,7 @@ import UIKit
 class LoadingIndicatorController: UIViewController {
     
     // MARK: - Properties
-    var delegate: LoadingIndicatorControllerDelegate?
+    weak var delegate: LoadingIndicatorControllerDelegate?
     var errorTitle: String?
     var errorMessage: String? {
         didSet {

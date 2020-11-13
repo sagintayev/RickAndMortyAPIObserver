@@ -10,7 +10,7 @@ import UIKit
 
 class CharacterFilterView: UIView {
     // MARK: - Preperties
-    var delegate: CharacterFilterViewDelegate?
+    weak var delegate: CharacterFilterViewDelegate?
     
     // MARK: - IB Outlets
     @IBOutlet private var contentView: CharacterFilterView!

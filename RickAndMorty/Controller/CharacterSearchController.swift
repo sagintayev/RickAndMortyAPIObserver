@@ -13,7 +13,7 @@ class CharacterSearchController: UIViewController, Toggleable {
     private var filter = CharacterFilter()
     
     // MARK: - Delegate
-    var delegate: SearchControllerDelegate?
+    weak var delegate: SearchControllerDelegate?
     
     // MARK: - UI Properties
     private var filterView = CharacterFilterView()
