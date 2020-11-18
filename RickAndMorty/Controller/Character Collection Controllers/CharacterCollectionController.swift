@@ -16,6 +16,9 @@ class CharacterCollectionController: UIViewController {
     var isLoading = true {
         didSet { self.collectionView.collectionViewLayout.invalidateLayout() }
     }
+    private var cellWidth: CGFloat {
+        (collectionView.bounds.width - itemsPerRow * spacingBetweenItems) / itemsPerRow
+    }
     
     lazy var collectionView: UICollectionView = {
         let layout = getLayout()
@@ -43,7 +46,9 @@ class CharacterCollectionController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        collectionView.reloadItems(at: collectionView.indexPathsForVisibleItems)
+        if let characterCell = collectionView.visibleCells.first as? CharacterCell, characterCell.cellWidth != cellWidth {
+            collectionView.reloadItems(at: collectionView.indexPathsForVisibleItems)
+        }
     }
     
     func setupCharacterCollection() {
@@ -58,8 +63,7 @@ class CharacterCollectionController: UIViewController {
     // MARK: - Private methods
     private func configure(_ cell: inout UICollectionViewCell, with character: Character) {
         guard let cell = cell as? CharacterCell else { return }
-        let width = (collectionView.bounds.width - itemsPerRow * spacingBetweenItems) / itemsPerRow
-        cell.cellWidth = width
+        cell.cellWidth = cellWidth
         cell.labelText = character.name
         cell.tag = character.id
         character.getImage { (imageData) in
