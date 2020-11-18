@@ -24,6 +24,11 @@ class CharacterMainFeedController: CharacterFeedController {
         }
     }
     
+    override func loadView() {
+        super.loadView()
+        willLoadDataWhenScrollToEnd = false
+    }
+    
     override func setupCharacterCollection() {
         super.setupCharacterCollection()
         collectionView.register(HeaderLabelReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderLabelReusableView.identifier)
@@ -41,7 +46,14 @@ class CharacterMainFeedController: CharacterFeedController {
     private func getSection(for number: Int) -> NSCollectionLayoutSection {
         let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/3), heightDimension: .fractionalHeight(1)))
         item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 2, bottom: 5, trailing: 2)
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(200)), subitem: item, count: 3)
+        
+        var group: NSCollectionLayoutGroup!
+        if traitCollection.horizontalSizeClass == .compact {
+            group = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(200)), subitem: item, count: 3)
+        } else {
+            group = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(350)), subitem: item, count: 3)
+        }
+        
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
         section.boundarySupplementaryItems = [NSCollectionLayoutBoundarySupplementaryItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(30)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)]

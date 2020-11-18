@@ -14,6 +14,7 @@ class CharacterFeedController: CharacterCollectionController {
     var filtersBySection = [Int: CharacterFilter]()
     let selectedSection = 0
     var showLoadingController = true
+    var willLoadDataWhenScrollToEnd = true
     private var loadingController: LoadingIndicatorController!
     
     // MARK: - Life Cycle
@@ -92,8 +93,10 @@ class CharacterFeedController: CharacterCollectionController {
     
     // MARK: - Collection View Methods    
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if let characters = characters[indexPath.section], indexPath.item == characters.count - 1 {
-            loadData(for: indexPath.section)
+        if willLoadDataWhenScrollToEnd {
+            if let characters = characters[indexPath.section], indexPath.item == characters.count - 1 {
+                loadData(for: indexPath.section)
+            }
         }
     }
 }
