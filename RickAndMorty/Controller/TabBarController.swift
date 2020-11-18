@@ -10,8 +10,8 @@ import UIKit
 
 class TabBarController: UITabBarController {
     
-    var charactersVC: UINavigationController = {
-        let charactersVC = CharacterFeedController()
+    private lazy var charactersVC: UINavigationController = {
+        let charactersVC = CharacterMainFeedController()
         let characterSearchController = CharacterSearchController()
         characterSearchController.delegate = charactersVC
         let charactersContainer = ContainerWithSideController(contentController: charactersVC, sideController: characterSearchController)
@@ -21,7 +21,7 @@ class TabBarController: UITabBarController {
         return navController
     }()
     
-    var locationsVC: UINavigationController = {
+    private lazy var locationsVC: UINavigationController = {
         let locationsVC = LocationFeedVC()
         locationsVC.title = "Locations"
         let navController = getNavController(withRoot: locationsVC)
@@ -29,7 +29,7 @@ class TabBarController: UITabBarController {
         return navController
     }()
     
-    var episodesVC: UINavigationController = {
+    private lazy var episodesVC: UINavigationController = {
         let episodesVC = EpisodeTableController()
         episodesVC.title = "Episodes"
         let navController = getNavController(withRoot: episodesVC)
