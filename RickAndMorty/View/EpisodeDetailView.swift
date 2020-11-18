@@ -44,6 +44,7 @@ class EpisodeDetailView: UIView {
     // MARK: - UI properties
     private let nameLabel: UILabel = {
         let label = UILabel()
+        label.textColor = UIConstants.highlightTextColor
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 46)
         label.numberOfLines = 0
@@ -51,6 +52,7 @@ class EpisodeDetailView: UIView {
     }()
     private let seasonLabel: UILabel = {
         let label = UILabel()
+        label.textColor = UIConstants.mainTextColor
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 30)
         label.numberOfLines = 0
@@ -58,6 +60,7 @@ class EpisodeDetailView: UIView {
     }()
     private let episodeLabel: UILabel = {
         let label = UILabel()
+        label.textColor = UIConstants.mainTextColor
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 30)
         label.numberOfLines = 0
@@ -65,8 +68,9 @@ class EpisodeDetailView: UIView {
     }()
     private let wasAiredLabel: UILabel = {
         let label = UILabel()
+        label.textColor = UIConstants.secondTextColor
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .systemGray4
+        label.textColor = UIConstants.secondTextColor
         label.text = "Aired on"
         label.font = .systemFont(ofSize: 20)
         label.numberOfLines = 0
@@ -74,6 +78,7 @@ class EpisodeDetailView: UIView {
     }()
     private let airDateLabel: UILabel = {
         let label = UILabel()
+        label.textColor = UIConstants.mainTextColor
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 26)
         label.numberOfLines = 0
@@ -83,7 +88,7 @@ class EpisodeDetailView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Characters seen in the episode"
-        label.textColor = .systemGray4
+        label.textColor = UIConstants.secondTextColor
         label.font = .systemFont(ofSize: 34)
         label.numberOfLines = 0
         label.textAlignment = .center

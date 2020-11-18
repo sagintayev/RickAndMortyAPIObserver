@@ -36,7 +36,7 @@ class CharacterSearchController: UIViewController, Toggleable {
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
-        view.backgroundColor = .white
+        view.backgroundColor = UIConstants.mainBackgroundColor
         setupScrollView()
         setupFilterView()
     }

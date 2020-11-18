@@ -64,7 +64,9 @@ class CharacterFilterView: UIView {
     private func commonInit() {
         Bundle.main.loadNibNamed("CharacterFilterView", owner: self, options: nil)
         addSubview(contentView)
+        contentView.backgroundColor = UIConstants.mainBackgroundColor
         contentView.frame = self.bounds
+        searchButton.backgroundColor = UIConstants.highlightColor
     }
     
     // MARK: - Actions

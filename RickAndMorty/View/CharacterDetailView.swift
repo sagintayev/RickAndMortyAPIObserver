@@ -58,13 +58,15 @@ class CharacterDetailView: UIView {
     }()
     private var nameLabel: UILabel = {
         let label = UILabel()
+        label.textColor = UIConstants.highlightTextColor
         label.font = UIFont(name: "MarkerFelt-Thin", size: 30)
         label.numberOfLines = 0
         return label
     }()
     private var speciesTypeLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .systemGray4
+        label.textColor = UIConstants.mainTextColor
+        label.textColor = UIConstants.secondTextColor
         return label
     }()
     private var statusIndicator: UIView = {
@@ -73,17 +75,19 @@ class CharacterDetailView: UIView {
     }()
     private var statusLabel: UILabel = {
         let label = UILabel()
+        label.textColor = UIConstants.mainTextColor
         label.font = .systemFont(ofSize: 22)
         return label
     }()
     private var genderLabel: UILabel = {
         let label = UILabel()
+        label.textColor = UIConstants.mainTextColor
         label.font = .systemFont(ofSize: 22)
         return label
     }()
     private var originTitleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .systemGray4
+        label.textColor = UIConstants.secondTextColor
         label.text = "Origin:"
         label.font = .systemFont(ofSize: 22)
         return label
@@ -91,7 +95,7 @@ class CharacterDetailView: UIView {
     private lazy var originButton: UIButton = getDetailDisclosureButton()
     private var currentLocationTitleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .systemGray4
+        label.textColor = UIConstants.secondTextColor
         label.text = "Current Location:"
         label.font = .systemFont(ofSize: 22)
         return label
@@ -99,6 +103,7 @@ class CharacterDetailView: UIView {
     private lazy var currentLocationButton: UIButton = getDetailDisclosureButton()
     private var episodesTitleLabel: UILabel = {
         let label = UILabel()
+        label.textColor = UIConstants.mainTextColor
         label.text = "Seen in the next episodes:"
         label.font = .boldSystemFont(ofSize: 26)
         return label
@@ -120,7 +125,7 @@ class CharacterDetailView: UIView {
     private func getDetailDisclosureButton() -> UIButton {
         let button = UIButton(type: .detailDisclosure)
         button.contentHorizontalAlignment = .left
-        button.tintColor = .black
+        button.tintColor = UIConstants.mainTextColor
         button.titleEdgeInsets.left = 10
         button.addTarget(self, action: #selector(originButtonTapped), for: .touchUpInside)
         return button

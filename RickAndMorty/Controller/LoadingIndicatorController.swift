@@ -33,6 +33,7 @@ class LoadingIndicatorController: UIViewController {
     }()
     private var errorTitleLabel: UILabel = {
         let label = UILabel()
+        label.textColor = UIConstants.mainTextColor
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 26)
         label.numberOfLines = 0
@@ -40,6 +41,7 @@ class LoadingIndicatorController: UIViewController {
     }()
     private var errorMessageLabel: UILabel = {
         let label = UILabel()
+        label.textColor = UIConstants.mainTextColor
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 22)
         label.numberOfLines = 0

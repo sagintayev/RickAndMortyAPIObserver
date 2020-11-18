@@ -48,6 +48,6 @@ class LocationTableCell: UITableViewCell {
         let verticalPadding: CGFloat = 15
         locationView.embedIn(self, fromTop: verticalPadding, fromLeading: horizontalPadding, fromTrailing: -horizontalPadding, fromBottom: -verticalPadding)
         locationView.layer.cornerRadius = 10
-        locationView.backgroundColor = .white
+        locationView.backgroundColor = UIConstants.secondBackgroundColor
     }
 }

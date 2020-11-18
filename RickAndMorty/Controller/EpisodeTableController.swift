@@ -39,6 +39,7 @@ class EpisodeTableController: UIViewController {
     }
     
     func setupTableView() {
+        tableView.backgroundColor = UIConstants.mainBackgroundColor
         tableView.embedIn(view)
         tableView.delegate = self
         tableView.dataSource = self
@@ -75,7 +76,8 @@ extension EpisodeTableController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: tableCellIdentifier, for: indexPath)
-        
+        cell.backgroundColor = UIConstants.secondBackgroundColor
+        cell.textLabel?.textColor = UIConstants.mainTextColor
         if let episodesDividedBySeasons = episodesDividedBySeasons {
             let season = indexPath.section + 1
             let episode = indexPath.row

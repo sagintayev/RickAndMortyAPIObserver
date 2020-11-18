@@ -24,6 +24,7 @@ class HeaderLabelReusableView: UICollectionReusableView {
     }()
     private var headerLabel: UILabel = {
         let label = UILabel()
+        label.textColor = UIConstants.mainTextColor
         label.font = .boldSystemFont(ofSize: 20)
         return label
     }()

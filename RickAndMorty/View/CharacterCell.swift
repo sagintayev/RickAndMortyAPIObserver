@@ -65,6 +65,7 @@ class CharacterCell: UICollectionViewCell {
     
     private var label: UILabel = {
         let label = UILabel()
+        label.textColor = UIConstants.mainTextColor
         label.font = UIFont(name: "MarkerFelt-Thin", size: UIFont.systemFontSize)
         label.numberOfLines = 0
         label.textAlignment = .center
@@ -85,7 +86,7 @@ class CharacterCell: UICollectionViewCell {
     private func configureCell() {
         layer.cornerRadius = 6
         layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        backgroundColor = .white
+        backgroundColor = UIConstants.secondBackgroundColor
     }
     
     private func addSubviews() {

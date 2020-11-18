@@ -53,7 +53,7 @@ class CharacterDetailController: EpisodeTableController {
     // MARK: - Life Cycle
     override func loadView() {
         super.loadView()
-        view.backgroundColor = .systemGray6
+        view.backgroundColor = UIConstants.mainBackgroundColor
     }
 
     override func viewDidLoad() {

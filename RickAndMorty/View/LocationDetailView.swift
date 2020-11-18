@@ -29,6 +29,7 @@ class LocationDetailView: UIView {
     // MARK: - UI components
     private var nameLabel: UILabel = {
         let label = UILabel()
+        label.textColor = UIConstants.highlightTextColor
         label.font = .systemFont(ofSize: 36)
         label.numberOfLines = 0
         label.textAlignment = .center
@@ -36,24 +37,26 @@ class LocationDetailView: UIView {
     }()
     private var typeSubLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .systemGray4
+        label.textColor = UIConstants.secondTextColor
         label.text = "Type"
         return label
     }()
     private var typeLabel: UILabel = {
         let label = UILabel()
+        label.textColor = UIConstants.mainTextColor
         label.font = .systemFont(ofSize: 22)
         label.numberOfLines = 0
         return label
     }()
     private var dimensionSubLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .systemGray4
+        label.textColor = UIConstants.secondTextColor
         label.text = "Dimension"
         return label
     }()
     private var dimensionLabel: UILabel = {
         let label = UILabel()
+        label.textColor = UIConstants.mainTextColor
         label.font = .systemFont(ofSize: 22)
         label.numberOfLines = 0
         return label
@@ -140,7 +143,7 @@ class LocationDetailCollectionReusableView: UICollectionReusableView {
     }
     private let charactersLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .systemGray4
+        label.textColor = UIConstants.secondTextColor
         label.text = "Residents"
         label.font = .systemFont(ofSize: 38)
         return label
