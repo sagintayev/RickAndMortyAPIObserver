@@ -114,4 +114,11 @@ class CharacterMainFeedController: CharacterFeedController {
         characterCollectionController.characters[0] = characters[sender.tag]
         navigationController?.pushViewController(characterCollectionController, animated: true)
     }
+    
+    // MARK: - Search Controller Delegate
+    override func searchStarted(with filter: Filter) {
+        let characterFeedController = CharacterFeedController()
+        characterFeedController.filtersBySection[0] = filter as? CharacterFilter
+        navigationController?.pushViewController(characterFeedController, animated: true)
+    }
 }

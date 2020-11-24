@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CharacterFeedController: CharacterCollectionController {
+class CharacterFeedController: CharacterCollectionController, SearchControllerDelegate {
     // MARK: - Properties
     var headersBySection = [Int: String]()
     var filtersBySection = [Int: CharacterFilter]()
@@ -34,7 +34,9 @@ class CharacterFeedController: CharacterCollectionController {
     }
     
     func createFilters() {
-        filtersBySection[0] = CharacterFilter()
+        if !filtersBySection.keys.contains(0) {
+            filtersBySection[0] = CharacterFilter()
+        }
     }
     
     func loadData() {
@@ -99,10 +101,7 @@ class CharacterFeedController: CharacterCollectionController {
             }
         }
     }
-}
-
-// MARK: - Search Controller Delegate
-extension CharacterFeedController: SearchControllerDelegate {
+    // MARK: - Search Controller Delegate
     func searchStarted(with filter: Filter) {
         if setNewFilter(filter) {
             if showLoadingController {
