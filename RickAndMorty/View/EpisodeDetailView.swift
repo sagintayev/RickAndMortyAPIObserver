@@ -15,6 +15,11 @@ class EpisodeDetailView: UIView {
             nameLabel.text = name
         }
     }
+    var image: UIImage? {
+        didSet {
+            imageView.image = image
+        }
+    }
     var season: Int? {
         didSet {
             guard let season = season else { return }
@@ -49,6 +54,12 @@ class EpisodeDetailView: UIView {
         label.font = .systemFont(ofSize: 46)
         label.numberOfLines = 0
         return label
+    }()
+    private let imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFill
+        return imageView
     }()
     private let seasonLabel: UILabel = {
         let label = UILabel()
@@ -110,7 +121,7 @@ class EpisodeDetailView: UIView {
     
     // MARK: - Private methods
     private func addSubviews() {
-        for view in [nameLabel, seasonLabel, episodeLabel, wasAiredLabel, airDateLabel, residentsLabel] {
+        for view in [imageView, nameLabel, seasonLabel, episodeLabel, wasAiredLabel, airDateLabel, residentsLabel] {
             addSubview(view)
         }
     }
@@ -119,13 +130,19 @@ class EpisodeDetailView: UIView {
         let horizontalOffset: CGFloat = 30
         let verticalOffset: CGFloat = 25
     
+        let imageViewConstraints = [
+            imageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            imageView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+            imageView.heightAnchor.constraint(equalToConstant: 300).withPriority(999)
+        ]
         let nameLabelConstraints = [
-            nameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: verticalOffset),
+            nameLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: verticalOffset),
             nameLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: horizontalOffset),
-            nameLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -horizontalOffset),
+            nameLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -horizontalOffset)
         ]
         let seasonLabelConstraints = [
-            seasonLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: verticalOffset*1.5),
+            seasonLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: verticalOffset),
             seasonLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: horizontalOffset),
             seasonLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -horizontalOffset)
         ]
@@ -152,7 +169,8 @@ class EpisodeDetailView: UIView {
         ]
         
         NSLayoutConstraint.activate(
-            nameLabelConstraints
+            imageViewConstraints
+            + nameLabelConstraints
             + seasonLabelConstraints
             + episodeLabelConstrains
             + wasAiredLabelConstraints

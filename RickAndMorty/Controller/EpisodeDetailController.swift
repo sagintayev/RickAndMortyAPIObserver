@@ -32,6 +32,7 @@ class EpisodeDetailController: CharacterCollectionController {
     }()
     
     private func updateEpisodeView() {
+        episodeView.image = UIImage(named: episode.code)
         episodeView.name = episode.name
         episodeView.season = episode.season
         episodeView.episode = episode.episode
@@ -71,6 +72,6 @@ class EpisodeDetailController: CharacterCollectionController {
     func collectionView(_ collectionView: UICollectionView,
                           layout collectionViewLayout: UICollectionViewLayout,
                           referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: 1, height: 500)
+        return CGSize(width: 1, height: 800)
     }
 }
